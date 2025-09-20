@@ -23,17 +23,19 @@ class AddEditExerciseDialog : DialogFragment() {
         private const val ARG_EXERCISE = "exercise"
         
         fun newInstance(exercise: Exercise? = null): AddEditExerciseDialog {
-            val dialog = AddEditExerciseDialog()
-            val args = Bundle()
-            exercise?.let { args.putParcelable(ARG_EXERCISE, it) }
-            dialog.arguments = args
-            return dialog
+            return AddEditExerciseDialog().apply {
+                arguments = Bundle().apply {
+                    if (exercise != null) {
+                        putParcelable(ARG_EXERCISE, exercise)
+                    }
+                }
+            }
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        exercise = arguments?.getParcelable(ARG_EXERCISE)
+        exercise = arguments?.getParcelable(ARG_EXERCISE, Exercise::class.java)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

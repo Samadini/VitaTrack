@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+      See https://developer.android.com/guide/topics/data/autobackup#xml for details.
+      This file declares which app data should be included during device-to-device transfer
+      (Data Extraction / cloud restore). Keep sensitive caches out; include databases and prefs.
+    -->
+
+    <cloud-backup>
+        <!-- Include Room database -->
+        <include domain="database" path="." />
+        <!-- Include shared preferences -->
+        <include domain="sharedpref" path="." />
+        <!-- Exclude cache files -->
+        <exclude domain="cache" path="." />
+        <exclude domain="code_cache" path="." />
+        <exclude domain="no_backup" path="." />
+    </cloud-backup>
+
+    <device-transfer>
+        <!-- Mirror cloud-backup rules for device transfer -->
+        <include domain="database" path="." />
+        <include domain="sharedpref" path="." />
+        <exclude domain="cache" path="." />
+        <exclude domain="code_cache" path="." />
+        <exclude domain="no_backup" path="." />
+    </device-transfer>
+</data-extraction-rules>

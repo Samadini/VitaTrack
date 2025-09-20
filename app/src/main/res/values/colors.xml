@@ -46,4 +46,7 @@
     
     <!-- Shadow -->
     <color name="shadow">#1A000000</color>
+
+    <!-- Launcher icon background color -->
+    <color name="ic_launcher_background">#FFFFFF</color>
 </resources>

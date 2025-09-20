@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.vitatrack.app-mergeDebugResources-65:/values-h550dp-port-v13/values-h550dp-port-v13.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Samadini Pasanya\\.gradle\\caches\\transforms-3\\a67e7a68d5fdd98612b0a18311739882\\transformed\\material-1.11.0\\res\\values-h550dp-port-v13\\values-h550dp-port-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "64",
+                        "endOffsets": "115"
+                    }
+                }
+            ]
+        }
+    ]
+}

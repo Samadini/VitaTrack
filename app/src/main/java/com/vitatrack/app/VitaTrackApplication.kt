@@ -4,14 +4,18 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
-import androidx.work.Configuration
-import androidx.work.WorkManager
+import android.util.Log
 import com.google.firebase.FirebaseApp
 import com.vitatrack.app.data.database.VitaTrackDatabase
 import com.vitatrack.app.data.repository.UserRepository
 import com.vitatrack.app.utils.NotificationHelper
+import com.vitatrack.app.utils.FirebaseConfigValidator
 
 class VitaTrackApplication : Application() {
+
+    companion object {
+        private const val TAG = "VitaTrackApplication"
+    }
 
     // Database instance
     val database by lazy { VitaTrackDatabase.getDatabase(this) }
@@ -25,11 +29,15 @@ class VitaTrackApplication : Application() {
         // Initialize Firebase
         FirebaseApp.initializeApp(this)
         
+        // Always run Firebase validation in development
+        try {
+            FirebaseConfigValidator.validate(this)
+        } catch (e: Exception) {
+            Log.e(TAG, "Error during Firebase validation", e)
+        }
+        
         // Create notification channels
         createNotificationChannels()
-        
-        // Initialize WorkManager
-        initializeWorkManager()
     }
 
     private fun createNotificationChannels() {
@@ -65,10 +73,4 @@ class VitaTrackApplication : Application() {
         }
     }
 
-    private fun initializeWorkManager() {
-        val config = Configuration.Builder()
-            .setMinimumLoggingLevel(android.util.Log.INFO)
-            .build()
-        WorkManager.initialize(this, config)
-    }
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Include Room database files -->
+    <include domain="database" path="." />
+
+    <!-- Include shared preferences -->
+    <include domain="sharedpref" path="." />
+
+    <!-- Exclude caches and code cache -->
+    <exclude domain="cache" path="." />
+    <exclude domain="code_cache" path="." />
+    <exclude domain="no_backup" path="." />
+</full-backup-content>
