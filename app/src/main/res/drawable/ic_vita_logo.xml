@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    
+    <!-- Water drop icon matching your design -->
+    <path
+        android:fillColor="@color/text_white"
+        android:pathData="M24,8C18.5,14 14,19.5 14,26c0,5.5 4.5,10 10,10s10,-4.5 10,-10C34,19.5 29.5,14 24,8z"/>
+    
+    <!-- Inner highlight -->
+    <path
+        android:fillColor="#80FFFFFF"
+        android:pathData="M20,22c0,-2 2,-4 4,-4s4,2 4,4c0,2 -2,4 -4,4S20,24 20,22z"/>
+</vector>

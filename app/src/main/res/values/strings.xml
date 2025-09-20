@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VitaTrack</string>
+    <string name="app_tagline">Your health &amp; fitness companion</string>
+    
+    <!-- Authentication -->
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="create_new_account">Create new account</string>
+    <string name="forgot_password">Forgot your password?</string>
+    <string name="or_continue_with">Or continue with</string>
+    <string name="google">Google</string>
+    <string name="apple">Apple</string>
+    <string name="need_help">Need help?</string>
+    <string name="contact_support">Contact support</string>
+    <string name="remember_me">Remember me</string>
+    
+    <!-- Form Fields -->
+    <string name="username">Username</string>
+    <string name="email_address">Email address</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="full_name">Full Name</string>
+    
+    <!-- Dashboard -->
+    <string name="dashboard">Dashboard</string>
+    <string name="today_progress">Today\'s Progress</string>
+    <string name="steps">Steps</string>
+    <string name="calories">Calories</string>
+    <string name="water">Water</string>
+    <string name="exercises">Exercises</string>
+    <string name="quick_actions">Quick Actions</string>
+    
+    <!-- Exercise Tracking -->
+    <string name="exercise_tracking">Exercise Tracking</string>
+    <string name="add_exercise">Add Exercise</string>
+    <string name="exercise_type">Exercise Type</string>
+    <string name="duration">Duration</string>
+    <string name="calories_burned">Calories Burned</string>
+    <string name="walking">Walking</string>
+    <string name="running">Running</string>
+    <string name="yoga">Yoga</string>
+    <string name="gym">Gym</string>
+    <string name="cycling">Cycling</string>
+    <string name="swimming">Swimming</string>
+    
+    <!-- Meal Tracking -->
+    <string name="meal_tracking">Meal Tracking</string>
+    <string name="add_meal">Add Meal</string>
+    <string name="meal_name">Meal Name</string>
+    <string name="meal_type">Meal Type</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="lunch">Lunch</string>
+    <string name="dinner">Dinner</string>
+    <string name="snack">Snack</string>
+    <string name="nutrition_info">Nutrition Info</string>
+    
+    <!-- Water Tracking -->
+    <string name="water_intake">Water Intake</string>
+    <string name="add_water">Add Water</string>
+    <string name="daily_goal">Daily Goal</string>
+    <string name="ml">ml</string>
+    <string name="glasses">glasses</string>
+    
+    <!-- Progress -->
+    <string name="progress">Progress</string>
+    <string name="weekly">Weekly</string>
+    <string name="monthly">Monthly</string>
+    <string name="history">History</string>
+    
+    <!-- Profile -->
+    <string name="profile">Profile</string>
+    <string name="settings">Settings</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="age">Age</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="goals">Goals</string>
+    
+    <!-- Notifications -->
+    <string name="notifications">Notifications</string>
+    <string name="reminders">Reminders</string>
+    <string name="drink_water_reminder">Drink water reminder</string>
+    <string name="exercise_reminder">Exercise reminder</string>
+    <string name="meal_reminder">Meal reminder</string>
+    
+    <!-- General -->
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="add">Add</string>
+    <string name="update">Update</string>
+    <string name="loading">Loading...</string>
+    <string name="error">Error</string>
+    <string name="success">Success</string>
+    
+    <!-- Units -->
+    <string name="kg">kg</string>
+    <string name="cm">cm</string>
+    <string name="minutes">minutes</string>
+    <string name="hours">hours</string>
+    
+    <!-- Messages -->
+    <string name="login_successful">Login successful!</string>
+    <string name="registration_successful">Registration successful!</string>
+    <string name="data_saved">Data saved successfully</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    
+    <!-- Navigation -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    
+    <!-- Firebase -->
+    <string name="default_web_client_id">your_web_client_id_here</string>
+</resources>
