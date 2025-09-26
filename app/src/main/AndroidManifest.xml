@@ -37,10 +37,34 @@
             android:name=".ui.auth.AuthActivity"
             android:exported="false"
             android:theme="@style/Theme.VitaTrack" />
+            
+        <!-- Simple Authentication Activity (Test) -->
+        <activity
+            android:name=".ui.auth.SimpleAuthActivity"
+            android:exported="false"
+            android:theme="@style/Theme.VitaTrack" />
+            
+        <!-- Login Activity -->
+        <activity
+            android:name=".ui.auth.LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.VitaTrack" />
 
         <!-- Main Activity -->
         <activity
             android:name=".ui.main.MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.VitaTrack" />
+            
+        <!-- Simple Main Activity (Test) -->
+        <activity
+            android:name=".ui.main.SimpleMainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.VitaTrack" />
+            
+        <!-- New Main Activity with Navigation -->
+        <activity
+            android:name=".ui.main.MainActivityNew"
             android:exported="false"
             android:theme="@style/Theme.VitaTrack" />
 

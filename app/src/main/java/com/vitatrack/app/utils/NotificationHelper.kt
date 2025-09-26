@@ -6,7 +6,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import com.vitatrack.app.R
-import com.vitatrack.app.ui.main.MainActivity
+import com.vitatrack.app.ui.main.MainActivityNew
 
 object NotificationHelper {
     
@@ -19,7 +19,7 @@ object NotificationHelper {
     const val MEAL_REMINDER_ID = 1003
 
     fun showWaterReminder(context: Context) {
-        val intent = Intent(context, MainActivity::class.java).apply {
+        val intent = Intent(context, MainActivityNew::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent = PendingIntent.getActivity(
@@ -40,7 +40,7 @@ object NotificationHelper {
     }
 
     fun showExerciseReminder(context: Context) {
-        val intent = Intent(context, MainActivity::class.java).apply {
+        val intent = Intent(context, MainActivityNew::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent = PendingIntent.getActivity(
@@ -61,7 +61,7 @@ object NotificationHelper {
     }
 
     fun showMealReminder(context: Context, mealType: String) {
-        val intent = Intent(context, MainActivity::class.java).apply {
+        val intent = Intent(context, MainActivityNew::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent = PendingIntent.getActivity(

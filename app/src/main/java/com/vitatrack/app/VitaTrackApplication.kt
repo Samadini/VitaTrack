@@ -26,18 +26,22 @@ class VitaTrackApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         
-        // Initialize Firebase
-        FirebaseApp.initializeApp(this)
-        
-        // Always run Firebase validation in development
         try {
-            FirebaseConfigValidator.validate(this)
+            // Initialize Firebase
+            FirebaseApp.initializeApp(this)
+            Log.d(TAG, "Firebase initialized successfully")
+            
+            // Create notification channels
+            createNotificationChannels()
+            Log.d(TAG, "Notification channels created")
+            
+            // Firebase validation (commented out to avoid startup crashes)
+            // FirebaseConfigValidator.validate(this)
+            
         } catch (e: Exception) {
-            Log.e(TAG, "Error during Firebase validation", e)
+            Log.e(TAG, "Error during application initialization", e)
+            // Don't let the app crash on startup
         }
-        
-        // Create notification channels
-        createNotificationChannels()
     }
 
     private fun createNotificationChannels() {

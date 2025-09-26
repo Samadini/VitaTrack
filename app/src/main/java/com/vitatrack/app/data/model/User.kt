@@ -7,16 +7,16 @@ import java.util.Date
 @Entity(tableName = "users")
 data class User(
     @PrimaryKey
-    val uid: String = "",
-    val email: String = "",
-    val displayName: String = "",
-    val photoUrl: String? = null,
+    val id: String, // Firebase UID
+    val name: String,
+    val email: String,
     val age: Int? = null,
     val height: Float? = null, // in cm
     val weight: Float? = null, // in kg
+    val dailyWaterGoal: Int = 2500, // in ml
+    val dailyCalorieGoal: Int = 2000,
     val dailyStepsGoal: Int = 10000,
-    val dailyCaloriesGoal: Int = 2000,
-    val dailyWaterGoal: Int = 2000, // in ml
+    val profileImageUrl: String? = null,
     val createdAt: Date = Date(),
     val updatedAt: Date = Date()
 )

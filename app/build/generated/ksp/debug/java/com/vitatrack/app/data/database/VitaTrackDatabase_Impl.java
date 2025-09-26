@@ -11,8 +11,6 @@ import androidx.room.util.DBUtil;
 import androidx.room.util.TableInfo;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
-import com.vitatrack.app.data.dao.ExerciseDao;
-import com.vitatrack.app.data.dao.ExerciseDao_Impl;
 import com.vitatrack.app.data.dao.MealDao;
 import com.vitatrack.app.data.dao.MealDao_Impl;
 import com.vitatrack.app.data.dao.UserDao;
@@ -36,8 +34,6 @@ import javax.annotation.processing.Generated;
 public final class VitaTrackDatabase_Impl extends VitaTrackDatabase {
   private volatile UserDao _userDao;
 
-  private volatile ExerciseDao _exerciseDao;
-
   private volatile MealDao _mealDao;
 
   private volatile WaterIntakeDao _waterIntakeDao;
@@ -45,21 +41,19 @@ public final class VitaTrackDatabase_Impl extends VitaTrackDatabase {
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(1) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(4) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS `users` (`uid` TEXT NOT NULL, `email` TEXT NOT NULL, `displayName` TEXT NOT NULL, `photoUrl` TEXT, `age` INTEGER, `height` REAL, `weight` REAL, `dailyStepsGoal` INTEGER NOT NULL, `dailyCaloriesGoal` INTEGER NOT NULL, `dailyWaterGoal` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL, PRIMARY KEY(`uid`))");
-        db.execSQL("CREATE TABLE IF NOT EXISTS `exercises` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` TEXT NOT NULL, `type` TEXT NOT NULL, `name` TEXT NOT NULL, `duration` INTEGER NOT NULL, `caloriesBurned` INTEGER NOT NULL, `notes` TEXT, `date` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `users` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `email` TEXT NOT NULL, `age` INTEGER, `height` REAL, `weight` REAL, `dailyWaterGoal` INTEGER NOT NULL, `dailyCalorieGoal` INTEGER NOT NULL, `dailyStepsGoal` INTEGER NOT NULL, `profileImageUrl` TEXT, `createdAt` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `meals` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` TEXT NOT NULL, `name` TEXT NOT NULL, `type` TEXT NOT NULL, `calories` INTEGER NOT NULL, `protein` REAL, `carbs` REAL, `fat` REAL, `fiber` REAL, `sugar` REAL, `notes` TEXT, `date` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `water_intake` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userId` TEXT NOT NULL, `amount` INTEGER NOT NULL, `date` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '62d1e72dd85a69557a5583565acbdca6')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7aa7f9601b75d1061c7a5fc6d65ebac4')");
       }
 
       @Override
       public void dropAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("DROP TABLE IF EXISTS `users`");
-        db.execSQL("DROP TABLE IF EXISTS `exercises`");
         db.execSQL("DROP TABLE IF EXISTS `meals`");
         db.execSQL("DROP TABLE IF EXISTS `water_intake`");
         final List<? extends RoomDatabase.Callback> _callbacks = mCallbacks;
@@ -106,16 +100,16 @@ public final class VitaTrackDatabase_Impl extends VitaTrackDatabase {
       public RoomOpenHelper.ValidationResult onValidateSchema(
           @NonNull final SupportSQLiteDatabase db) {
         final HashMap<String, TableInfo.Column> _columnsUsers = new HashMap<String, TableInfo.Column>(12);
-        _columnsUsers.put("uid", new TableInfo.Column("uid", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUsers.put("id", new TableInfo.Column("id", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUsers.put("name", new TableInfo.Column("name", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUsers.put("email", new TableInfo.Column("email", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsUsers.put("displayName", new TableInfo.Column("displayName", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsUsers.put("photoUrl", new TableInfo.Column("photoUrl", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUsers.put("age", new TableInfo.Column("age", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUsers.put("height", new TableInfo.Column("height", "REAL", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUsers.put("weight", new TableInfo.Column("weight", "REAL", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsUsers.put("dailyStepsGoal", new TableInfo.Column("dailyStepsGoal", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsUsers.put("dailyCaloriesGoal", new TableInfo.Column("dailyCaloriesGoal", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUsers.put("dailyWaterGoal", new TableInfo.Column("dailyWaterGoal", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUsers.put("dailyCalorieGoal", new TableInfo.Column("dailyCalorieGoal", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUsers.put("dailyStepsGoal", new TableInfo.Column("dailyStepsGoal", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsUsers.put("profileImageUrl", new TableInfo.Column("profileImageUrl", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUsers.put("createdAt", new TableInfo.Column("createdAt", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUsers.put("updatedAt", new TableInfo.Column("updatedAt", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysUsers = new HashSet<TableInfo.ForeignKey>(0);
@@ -126,25 +120,6 @@ public final class VitaTrackDatabase_Impl extends VitaTrackDatabase {
           return new RoomOpenHelper.ValidationResult(false, "users(com.vitatrack.app.data.model.User).\n"
                   + " Expected:\n" + _infoUsers + "\n"
                   + " Found:\n" + _existingUsers);
-        }
-        final HashMap<String, TableInfo.Column> _columnsExercises = new HashMap<String, TableInfo.Column>(9);
-        _columnsExercises.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsExercises.put("userId", new TableInfo.Column("userId", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsExercises.put("type", new TableInfo.Column("type", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsExercises.put("name", new TableInfo.Column("name", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsExercises.put("duration", new TableInfo.Column("duration", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsExercises.put("caloriesBurned", new TableInfo.Column("caloriesBurned", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsExercises.put("notes", new TableInfo.Column("notes", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsExercises.put("date", new TableInfo.Column("date", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsExercises.put("createdAt", new TableInfo.Column("createdAt", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        final HashSet<TableInfo.ForeignKey> _foreignKeysExercises = new HashSet<TableInfo.ForeignKey>(0);
-        final HashSet<TableInfo.Index> _indicesExercises = new HashSet<TableInfo.Index>(0);
-        final TableInfo _infoExercises = new TableInfo("exercises", _columnsExercises, _foreignKeysExercises, _indicesExercises);
-        final TableInfo _existingExercises = TableInfo.read(db, "exercises");
-        if (!_infoExercises.equals(_existingExercises)) {
-          return new RoomOpenHelper.ValidationResult(false, "exercises(com.vitatrack.app.data.model.Exercise).\n"
-                  + " Expected:\n" + _infoExercises + "\n"
-                  + " Found:\n" + _existingExercises);
         }
         final HashMap<String, TableInfo.Column> _columnsMeals = new HashMap<String, TableInfo.Column>(13);
         _columnsMeals.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
@@ -186,7 +161,7 @@ public final class VitaTrackDatabase_Impl extends VitaTrackDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "62d1e72dd85a69557a5583565acbdca6", "06c1149e4334d59fd64647c68ad97f47");
+    }, "7aa7f9601b75d1061c7a5fc6d65ebac4", "13d466ea6d221d5f0c691e4b484e4366");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
@@ -197,7 +172,7 @@ public final class VitaTrackDatabase_Impl extends VitaTrackDatabase {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     final HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "users","exercises","meals","water_intake");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "users","meals","water_intake");
   }
 
   @Override
@@ -207,7 +182,6 @@ public final class VitaTrackDatabase_Impl extends VitaTrackDatabase {
     try {
       super.beginTransaction();
       _db.execSQL("DELETE FROM `users`");
-      _db.execSQL("DELETE FROM `exercises`");
       _db.execSQL("DELETE FROM `meals`");
       _db.execSQL("DELETE FROM `water_intake`");
       super.setTransactionSuccessful();
@@ -225,7 +199,6 @@ public final class VitaTrackDatabase_Impl extends VitaTrackDatabase {
   protected Map<Class<?>, List<Class<?>>> getRequiredTypeConverters() {
     final HashMap<Class<?>, List<Class<?>>> _typeConvertersMap = new HashMap<Class<?>, List<Class<?>>>();
     _typeConvertersMap.put(UserDao.class, UserDao_Impl.getRequiredConverters());
-    _typeConvertersMap.put(ExerciseDao.class, ExerciseDao_Impl.getRequiredConverters());
     _typeConvertersMap.put(MealDao.class, MealDao_Impl.getRequiredConverters());
     _typeConvertersMap.put(WaterIntakeDao.class, WaterIntakeDao_Impl.getRequiredConverters());
     return _typeConvertersMap;
@@ -256,20 +229,6 @@ public final class VitaTrackDatabase_Impl extends VitaTrackDatabase {
           _userDao = new UserDao_Impl(this);
         }
         return _userDao;
-      }
-    }
-  }
-
-  @Override
-  public ExerciseDao exerciseDao() {
-    if (_exerciseDao != null) {
-      return _exerciseDao;
-    } else {
-      synchronized(this) {
-        if(_exerciseDao == null) {
-          _exerciseDao = new ExerciseDao_Impl(this);
-        }
-        return _exerciseDao;
       }
     }
   }

@@ -5,25 +5,22 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.vitatrack.app.data.dao.ExerciseDao
 import com.vitatrack.app.data.dao.MealDao
 import com.vitatrack.app.data.dao.UserDao
 import com.vitatrack.app.data.dao.WaterIntakeDao
-import com.vitatrack.app.data.model.Exercise
 import com.vitatrack.app.data.model.Meal
 import com.vitatrack.app.data.model.User
 import com.vitatrack.app.data.model.WaterIntake
 
 @Database(
-    entities = [User::class, Exercise::class, Meal::class, WaterIntake::class],
-    version = 1,
+    entities = [User::class, Meal::class, WaterIntake::class],
+    version = 4,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class VitaTrackDatabase : RoomDatabase() {
     
     abstract fun userDao(): UserDao
-    abstract fun exerciseDao(): ExerciseDao
     abstract fun mealDao(): MealDao
     abstract fun waterIntakeDao(): WaterIntakeDao
     
@@ -37,7 +34,8 @@ abstract class VitaTrackDatabase : RoomDatabase() {
                     context.applicationContext,
                     VitaTrackDatabase::class.java,
                     "vita_track_database"
-                ).build()
+                ).fallbackToDestructiveMigration()
+                .build()
                 INSTANCE = instance
                 instance
             }

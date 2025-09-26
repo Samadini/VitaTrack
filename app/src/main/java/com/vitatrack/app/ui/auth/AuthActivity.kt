@@ -19,7 +19,7 @@ import com.vitatrack.app.R
 import com.vitatrack.app.VitaTrackApplication
 import com.vitatrack.app.data.model.User
 import com.vitatrack.app.databinding.ActivityAuthBinding
-import com.vitatrack.app.ui.main.MainActivity
+import com.vitatrack.app.ui.main.MainActivityNew
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.util.Date
@@ -128,16 +128,27 @@ class AuthActivity : AppCompatActivity() {
     private fun signInWithEmail() {
         val email = binding.etEmail.text.toString().trim()
         val password = binding.etPassword.text.toString().trim()
-        
+
         if (!validateInput(email, password)) return
-        
+
         showLoading(true)
-        
+
         lifecycleScope.launch {
             try {
-                auth.signInWithEmailAndPassword(email, password).await()
-                navigateToMain()
+                val result = auth.signInWithEmailAndPassword(email, password).await()
+                val user = result.user
+
+                if (user != null) {
+                    Log.d(TAG, "Sign in successful for user: ${user.email}")
+                    showLoading(false)
+                    navigateToMain()
+                } else {
+                    Log.w(TAG, "Sign in failed: user is null")
+                    showAuthError("Sign in failed", Exception("Authentication result was null"))
+                    showLoading(false)
+                }
             } catch (e: Exception) {
+                Log.e(TAG, "Sign in failed", e)
                 showAuthError("Sign in failed", e)
                 showLoading(false)
             }
@@ -148,39 +159,63 @@ class AuthActivity : AppCompatActivity() {
         val username = binding.etUsername.text.toString().trim()
         val email = binding.etEmail.text.toString().trim()
         val password = binding.etPassword.text.toString().trim()
-        
+
         if (!validateInput(email, password, username)) return
-        
+
         showLoading(true)
-        
+
         lifecycleScope.launch {
             try {
                 val result = auth.createUserWithEmailAndPassword(email, password).await()
                 val firebaseUser = result.user
-                
+
                 if (firebaseUser != null) {
+                    Log.d(TAG, "Sign up successful for user: ${firebaseUser.email}")
+
                     // Create user profile
                     val user = User(
-                        uid = firebaseUser.uid,
+                        id = firebaseUser.uid,
+                        name = username,
                         email = email,
-                        displayName = username,
                         createdAt = Date(),
                         updatedAt = Date()
                     )
-                    
-                    // Save to Firestore
-                    firestore.collection("users")
-                        .document(firebaseUser.uid)
-                        .set(user)
-                        .await()
-                    
-                    // Save to local database
-                    val app = application as VitaTrackApplication
-                    app.userRepository.insertUser(user)
-                    
+
+                    try {
+                        // Save to Firestore
+                        firestore.collection("users")
+                            .document(firebaseUser.uid)
+                            .set(user)
+                            .await()
+
+                        Log.d(TAG, "User profile saved to Firestore successfully")
+                    } catch (e: Exception) {
+                        Log.w(TAG, "Failed to save user to Firestore", e)
+                        // Continue even if Firestore save fails - user can be saved locally
+                    }
+
+                    try {
+                        // Save to local database
+                        val app = application as VitaTrackApplication
+                        app.userRepository.insertUser(user)
+                        Log.d(TAG, "User profile saved to local database successfully")
+                    } catch (e: Exception) {
+                        Log.e(TAG, "Failed to save user to local database", e)
+                        // Show warning but don't fail the entire signup process
+                        Toast.makeText(this@AuthActivity,
+                            "Account created but local data may not be available. Please restart the app.",
+                            Toast.LENGTH_LONG).show()
+                    }
+
+                    showLoading(false)
                     navigateToMain()
+                } else {
+                    Log.w(TAG, "Sign up failed: firebaseUser is null")
+                    showAuthError("Sign up failed", Exception("User creation result was null"))
+                    showLoading(false)
                 }
             } catch (e: Exception) {
+                Log.e(TAG, "Sign up failed", e)
                 showAuthError("Sign up failed", e)
                 showLoading(false)
             }
@@ -194,62 +229,101 @@ class AuthActivity : AppCompatActivity() {
     
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        
+
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
-                val account = task.getResult(ApiException::class.java)!!
-                Log.d(TAG, "firebaseAuthWithGoogle:" + account.id)
-                firebaseAuthWithGoogle(account.idToken!!)
+                val account = task.getResult(ApiException::class.java)
+                if (account != null && account.idToken != null) {
+                    Log.d(TAG, "Google sign in successful: ${account.email}")
+                    firebaseAuthWithGoogle(account.idToken!!)
+                } else {
+                    Log.w(TAG, "Google sign in failed: account or idToken is null")
+                    Toast.makeText(this, "Google sign in failed: Invalid account data", Toast.LENGTH_SHORT).show()
+                    showLoading(false)
+                }
             } catch (e: ApiException) {
                 Log.w(TAG, "Google sign in failed", e)
                 Toast.makeText(this, "Google sign in failed: ${e.statusCode}", Toast.LENGTH_SHORT).show()
+                showLoading(false)
             }
         }
     }
     
     private fun firebaseAuthWithGoogle(idToken: String) {
         showLoading(true)
-        
+
         lifecycleScope.launch {
             try {
                 val credential = GoogleAuthProvider.getCredential(idToken, null)
                 val result = auth.signInWithCredential(credential).await()
                 val firebaseUser = result.user
-                
+
                 if (firebaseUser != null) {
-                    // Check if user exists in Firestore
-                    val userDoc = firestore.collection("users")
-                        .document(firebaseUser.uid)
-                        .get()
-                        .await()
-                    
-                    if (!userDoc.exists()) {
-                        // Create new user profile
-                        val user = User(
-                            uid = firebaseUser.uid,
-                            email = firebaseUser.email ?: "",
-                            displayName = firebaseUser.displayName ?: "",
-                            photoUrl = firebaseUser.photoUrl?.toString(),
-                            createdAt = Date(),
-                            updatedAt = Date()
-                        )
-                        
-                        // Save to Firestore
-                        firestore.collection("users")
+                    Log.d(TAG, "Google sign in successful for user: ${firebaseUser.email}")
+
+                    try {
+                        // Check if user exists in Firestore
+                        val userDoc = firestore.collection("users")
                             .document(firebaseUser.uid)
-                            .set(user)
+                            .get()
                             .await()
-                        
-                        // Save to local database
-                        val app = application as VitaTrackApplication
-                        app.userRepository.insertUser(user)
+
+                        if (!userDoc.exists()) {
+                            // Create new user profile
+                            val user = User(
+                                id = firebaseUser.uid,
+                                name = firebaseUser.displayName ?: "",
+                                email = firebaseUser.email ?: "",
+                                profileImageUrl = firebaseUser.photoUrl?.toString(),
+                                createdAt = Date(),
+                                updatedAt = Date()
+                            )
+
+                            try {
+                                // Save to Firestore
+                                firestore.collection("users")
+                                    .document(firebaseUser.uid)
+                                    .set(user)
+                                    .await()
+
+                                Log.d(TAG, "New Google user profile saved to Firestore successfully")
+                            } catch (e: Exception) {
+                                Log.w(TAG, "Failed to save Google user to Firestore", e)
+                                // Continue even if Firestore save fails
+                            }
+
+                            try {
+                                // Save to local database
+                                val app = application as VitaTrackApplication
+                                app.userRepository.insertUser(user)
+                                Log.d(TAG, "New Google user profile saved to local database successfully")
+                            } catch (e: Exception) {
+                                Log.e(TAG, "Failed to save Google user to local database", e)
+                                // Show warning but don't fail the entire signup process
+                                Toast.makeText(this@AuthActivity,
+                                    "Account linked but local data may not be available. Please restart the app.",
+                                    Toast.LENGTH_LONG).show()
+                            }
+                        } else {
+                            Log.d(TAG, "Existing Google user found in database")
+                        }
+
+                        showLoading(false)
+                        navigateToMain()
+                    } catch (e: Exception) {
+                        Log.e(TAG, "Error checking/creating user profile", e)
+                        showAuthError("Failed to complete sign in", e)
+                        showLoading(false)
                     }
-                    
-                    navigateToMain()
+                } else {
+                    Log.w(TAG, "Google sign in failed: firebaseUser is null")
+                    showAuthError("Google sign in failed", Exception("Authentication result was null"))
+                    showLoading(false)
                 }
             } catch (e: Exception) {
-                showAuthError("Google auth failed", e)
+                Log.e(TAG, "Google sign in failed", e)
+                showAuthError("Google sign in failed", e)
                 showLoading(false)
             }
         }
@@ -315,7 +389,7 @@ class AuthActivity : AppCompatActivity() {
     }
     
     private fun navigateToMain() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, MainActivityNew::class.java))
         finish()
     }
 

@@ -4,62 +4,68 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.firebase.auth.FirebaseAuth
-import com.vitatrack.app.databinding.ActivitySplashBinding
-import com.vitatrack.app.ui.auth.AuthActivity
-import com.vitatrack.app.ui.main.MainActivity
+import com.vitatrack.app.R
+import com.vitatrack.app.ui.auth.LoginActivity
+import com.vitatrack.app.ui.main.MainActivityNew
 
 class SplashActivity : AppCompatActivity() {
     
-    private lateinit var binding: ActivitySplashBinding
-    private lateinit var auth: FirebaseAuth
-    
-    override fun onCreate(savedInstanceState: Bundle?) {
-        // Install splash screen
-        installSplashScreen()
-        
-        super.onCreate(savedInstanceState)
-        binding = ActivitySplashBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        
-        // Initialize Firebase Auth
-        auth = FirebaseAuth.getInstance()
-        
-        // Add animation to logo
-        animateLogo()
-        
-        // Check authentication status after delay
-        Handler(Looper.getMainLooper()).postDelayed({
-            checkAuthenticationStatus()
-        }, 2500) // 2.5 seconds delay
+    companion object {
+        private const val TAG = "SplashActivity"
     }
     
-    private fun animateLogo() {
-        binding.logoContainer.alpha = 0f
-        binding.logoContainer.scaleX = 0.5f
-        binding.logoContainer.scaleY = 0.5f
-        
-        binding.logoContainer.animate()
-            .alpha(1f)
-            .scaleX(1f)
-            .scaleY(1f)
-            .setDuration(1000)
-            .start()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d(TAG, "onCreate started")
+        try {
+            super.onCreate(savedInstanceState)
+            Log.d(TAG, "super.onCreate completed")
+            
+            // Use simple layout instead of binding for now
+            setContentView(R.layout.activity_splash)
+            Log.d(TAG, "Layout set")
+            
+            // Check authentication status after delay
+            Handler(Looper.getMainLooper()).postDelayed({
+                checkAuthenticationStatus()
+            }, 2000) // 2 seconds delay
+            
+        } catch (e: Exception) {
+            Log.e(TAG, "Error in onCreate", e)
+            // If there's an error, go directly to auth activity
+            navigateToAuth()
+        }
     }
     
     private fun checkAuthenticationStatus() {
-        val currentUser = auth.currentUser
-        
-        if (currentUser != null) {
-            // User is signed in, go to main activity
-            startActivity(Intent(this, MainActivity::class.java))
-        } else {
-            // No user is signed in, go to authentication
-            startActivity(Intent(this, AuthActivity::class.java))
+        Log.d(TAG, "Checking authentication status")
+        try {
+            val auth = FirebaseAuth.getInstance()
+            val currentUser = auth.currentUser
+            
+            if (currentUser != null) {
+                Log.d(TAG, "User is signed in, navigating to MainActivityNew")
+                startActivity(Intent(this, MainActivityNew::class.java))
+            } else {
+                Log.d(TAG, "No user signed in, navigating to LoginActivity")
+                navigateToAuth()
+            }
+            finish()
+        } catch (e: Exception) {
+            Log.e(TAG, "Error checking authentication", e)
+            navigateToAuth()
         }
-        
-        finish()
+    }
+    
+    private fun navigateToAuth() {
+        Log.d(TAG, "Navigating to LoginActivity")
+        try {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to start LoginActivity", e)
+        }
     }
 }

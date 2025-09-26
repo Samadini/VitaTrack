@@ -1,7 +1,6 @@
 package com.vitatrack.app.ui.dashboard
 
 import androidx.lifecycle.*
-import com.vitatrack.app.data.dao.ExerciseDao
 import com.vitatrack.app.data.dao.MealDao
 import com.vitatrack.app.data.dao.WaterIntakeDao
 import com.vitatrack.app.data.repository.UserRepository
@@ -10,7 +9,6 @@ import java.util.*
 
 class DashboardViewModel(
     private val userRepository: UserRepository,
-    private val exerciseDao: ExerciseDao,
     private val mealDao: MealDao,
     private val waterIntakeDao: WaterIntakeDao
 ) : ViewModel() {
@@ -43,13 +41,9 @@ class DashboardViewModel(
                     userId, startOfDay.time, endOfDay.time
                 ) ?: 0
 
-                val totalCaloriesBurned = exerciseDao.getTotalCaloriesBurnedByDateRange(
-                    userId, startOfDay.time, endOfDay.time
-                ) ?: 0
-
-                val totalExerciseDuration = exerciseDao.getTotalDurationByDateRange(
-                    userId, startOfDay.time, endOfDay.time
-                ) ?: 0
+                // Placeholder values for exercise data
+                val totalCaloriesBurned = 0
+                val totalExerciseDuration = 0
 
                 val totalWaterIntake = waterIntakeDao.getTotalWaterIntakeByDateRange(
                     userId, startOfDay.time, endOfDay.time
@@ -136,14 +130,13 @@ enum class ActivityType {
 
 class DashboardViewModelFactory(
     private val userRepository: UserRepository,
-    private val exerciseDao: ExerciseDao,
     private val mealDao: MealDao,
     private val waterIntakeDao: WaterIntakeDao
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DashboardViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return DashboardViewModel(userRepository, exerciseDao, mealDao, waterIntakeDao) as T
+            return DashboardViewModel(userRepository, mealDao, waterIntakeDao) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

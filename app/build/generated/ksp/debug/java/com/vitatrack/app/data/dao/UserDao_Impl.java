@@ -55,38 +55,38 @@ public final class UserDao_Impl implements UserDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `users` (`uid`,`email`,`displayName`,`photoUrl`,`age`,`height`,`weight`,`dailyStepsGoal`,`dailyCaloriesGoal`,`dailyWaterGoal`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `users` (`id`,`name`,`email`,`age`,`height`,`weight`,`dailyWaterGoal`,`dailyCalorieGoal`,`dailyStepsGoal`,`profileImageUrl`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
       protected void bind(@NonNull final SupportSQLiteStatement statement,
           @NonNull final User entity) {
-        statement.bindString(1, entity.getUid());
-        statement.bindString(2, entity.getEmail());
-        statement.bindString(3, entity.getDisplayName());
-        if (entity.getPhotoUrl() == null) {
+        statement.bindString(1, entity.getId());
+        statement.bindString(2, entity.getName());
+        statement.bindString(3, entity.getEmail());
+        if (entity.getAge() == null) {
           statement.bindNull(4);
         } else {
-          statement.bindString(4, entity.getPhotoUrl());
-        }
-        if (entity.getAge() == null) {
-          statement.bindNull(5);
-        } else {
-          statement.bindLong(5, entity.getAge());
+          statement.bindLong(4, entity.getAge());
         }
         if (entity.getHeight() == null) {
-          statement.bindNull(6);
+          statement.bindNull(5);
         } else {
-          statement.bindDouble(6, entity.getHeight());
+          statement.bindDouble(5, entity.getHeight());
         }
         if (entity.getWeight() == null) {
-          statement.bindNull(7);
+          statement.bindNull(6);
         } else {
-          statement.bindDouble(7, entity.getWeight());
+          statement.bindDouble(6, entity.getWeight());
         }
-        statement.bindLong(8, entity.getDailyStepsGoal());
-        statement.bindLong(9, entity.getDailyCaloriesGoal());
-        statement.bindLong(10, entity.getDailyWaterGoal());
+        statement.bindLong(7, entity.getDailyWaterGoal());
+        statement.bindLong(8, entity.getDailyCalorieGoal());
+        statement.bindLong(9, entity.getDailyStepsGoal());
+        if (entity.getProfileImageUrl() == null) {
+          statement.bindNull(10);
+        } else {
+          statement.bindString(10, entity.getProfileImageUrl());
+        }
         final Long _tmp = __converters.dateToTimestamp(entity.getCreatedAt());
         if (_tmp == null) {
           statement.bindNull(11);
@@ -105,51 +105,51 @@ public final class UserDao_Impl implements UserDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "DELETE FROM `users` WHERE `uid` = ?";
+        return "DELETE FROM `users` WHERE `id` = ?";
       }
 
       @Override
       protected void bind(@NonNull final SupportSQLiteStatement statement,
           @NonNull final User entity) {
-        statement.bindString(1, entity.getUid());
+        statement.bindString(1, entity.getId());
       }
     };
     this.__updateAdapterOfUser = new EntityDeletionOrUpdateAdapter<User>(__db) {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `users` SET `uid` = ?,`email` = ?,`displayName` = ?,`photoUrl` = ?,`age` = ?,`height` = ?,`weight` = ?,`dailyStepsGoal` = ?,`dailyCaloriesGoal` = ?,`dailyWaterGoal` = ?,`createdAt` = ?,`updatedAt` = ? WHERE `uid` = ?";
+        return "UPDATE OR ABORT `users` SET `id` = ?,`name` = ?,`email` = ?,`age` = ?,`height` = ?,`weight` = ?,`dailyWaterGoal` = ?,`dailyCalorieGoal` = ?,`dailyStepsGoal` = ?,`profileImageUrl` = ?,`createdAt` = ?,`updatedAt` = ? WHERE `id` = ?";
       }
 
       @Override
       protected void bind(@NonNull final SupportSQLiteStatement statement,
           @NonNull final User entity) {
-        statement.bindString(1, entity.getUid());
-        statement.bindString(2, entity.getEmail());
-        statement.bindString(3, entity.getDisplayName());
-        if (entity.getPhotoUrl() == null) {
+        statement.bindString(1, entity.getId());
+        statement.bindString(2, entity.getName());
+        statement.bindString(3, entity.getEmail());
+        if (entity.getAge() == null) {
           statement.bindNull(4);
         } else {
-          statement.bindString(4, entity.getPhotoUrl());
-        }
-        if (entity.getAge() == null) {
-          statement.bindNull(5);
-        } else {
-          statement.bindLong(5, entity.getAge());
+          statement.bindLong(4, entity.getAge());
         }
         if (entity.getHeight() == null) {
-          statement.bindNull(6);
+          statement.bindNull(5);
         } else {
-          statement.bindDouble(6, entity.getHeight());
+          statement.bindDouble(5, entity.getHeight());
         }
         if (entity.getWeight() == null) {
-          statement.bindNull(7);
+          statement.bindNull(6);
         } else {
-          statement.bindDouble(7, entity.getWeight());
+          statement.bindDouble(6, entity.getWeight());
         }
-        statement.bindLong(8, entity.getDailyStepsGoal());
-        statement.bindLong(9, entity.getDailyCaloriesGoal());
-        statement.bindLong(10, entity.getDailyWaterGoal());
+        statement.bindLong(7, entity.getDailyWaterGoal());
+        statement.bindLong(8, entity.getDailyCalorieGoal());
+        statement.bindLong(9, entity.getDailyStepsGoal());
+        if (entity.getProfileImageUrl() == null) {
+          statement.bindNull(10);
+        } else {
+          statement.bindString(10, entity.getProfileImageUrl());
+        }
         final Long _tmp = __converters.dateToTimestamp(entity.getCreatedAt());
         if (_tmp == null) {
           statement.bindNull(11);
@@ -162,14 +162,14 @@ public final class UserDao_Impl implements UserDao {
         } else {
           statement.bindLong(12, _tmp_1);
         }
-        statement.bindString(13, entity.getUid());
+        statement.bindString(13, entity.getId());
       }
     };
     this.__preparedStmtOfDeleteUserById = new SharedSQLiteStatement(__db) {
       @Override
       @NonNull
       public String createQuery() {
-        final String _query = "DELETE FROM users WHERE uid = ?";
+        final String _query = "DELETE FROM users WHERE id = ?";
         return _query;
       }
     };
@@ -230,14 +230,14 @@ public final class UserDao_Impl implements UserDao {
   }
 
   @Override
-  public Object deleteUserById(final String uid, final Continuation<? super Unit> $completion) {
+  public Object deleteUserById(final String userId, final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
       public Unit call() throws Exception {
         final SupportSQLiteStatement _stmt = __preparedStmtOfDeleteUserById.acquire();
         int _argIndex = 1;
-        _stmt.bindString(_argIndex, uid);
+        _stmt.bindString(_argIndex, userId);
         try {
           __db.beginTransaction();
           try {
@@ -255,11 +255,11 @@ public final class UserDao_Impl implements UserDao {
   }
 
   @Override
-  public Object getUserById(final String uid, final Continuation<? super User> $completion) {
-    final String _sql = "SELECT * FROM users WHERE uid = ?";
+  public Object getUserById(final String userId, final Continuation<? super User> $completion) {
+    final String _sql = "SELECT * FROM users WHERE id = ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
-    _statement.bindString(_argIndex, uid);
+    _statement.bindString(_argIndex, userId);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
     return CoroutinesRoom.execute(__db, false, _cancellationSignal, new Callable<User>() {
       @Override
@@ -267,32 +267,26 @@ public final class UserDao_Impl implements UserDao {
       public User call() throws Exception {
         final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
         try {
-          final int _cursorIndexOfUid = CursorUtil.getColumnIndexOrThrow(_cursor, "uid");
+          final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+          final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
           final int _cursorIndexOfEmail = CursorUtil.getColumnIndexOrThrow(_cursor, "email");
-          final int _cursorIndexOfDisplayName = CursorUtil.getColumnIndexOrThrow(_cursor, "displayName");
-          final int _cursorIndexOfPhotoUrl = CursorUtil.getColumnIndexOrThrow(_cursor, "photoUrl");
           final int _cursorIndexOfAge = CursorUtil.getColumnIndexOrThrow(_cursor, "age");
           final int _cursorIndexOfHeight = CursorUtil.getColumnIndexOrThrow(_cursor, "height");
           final int _cursorIndexOfWeight = CursorUtil.getColumnIndexOrThrow(_cursor, "weight");
-          final int _cursorIndexOfDailyStepsGoal = CursorUtil.getColumnIndexOrThrow(_cursor, "dailyStepsGoal");
-          final int _cursorIndexOfDailyCaloriesGoal = CursorUtil.getColumnIndexOrThrow(_cursor, "dailyCaloriesGoal");
           final int _cursorIndexOfDailyWaterGoal = CursorUtil.getColumnIndexOrThrow(_cursor, "dailyWaterGoal");
+          final int _cursorIndexOfDailyCalorieGoal = CursorUtil.getColumnIndexOrThrow(_cursor, "dailyCalorieGoal");
+          final int _cursorIndexOfDailyStepsGoal = CursorUtil.getColumnIndexOrThrow(_cursor, "dailyStepsGoal");
+          final int _cursorIndexOfProfileImageUrl = CursorUtil.getColumnIndexOrThrow(_cursor, "profileImageUrl");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
           final int _cursorIndexOfUpdatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "updatedAt");
           final User _result;
           if (_cursor.moveToFirst()) {
-            final String _tmpUid;
-            _tmpUid = _cursor.getString(_cursorIndexOfUid);
+            final String _tmpId;
+            _tmpId = _cursor.getString(_cursorIndexOfId);
+            final String _tmpName;
+            _tmpName = _cursor.getString(_cursorIndexOfName);
             final String _tmpEmail;
             _tmpEmail = _cursor.getString(_cursorIndexOfEmail);
-            final String _tmpDisplayName;
-            _tmpDisplayName = _cursor.getString(_cursorIndexOfDisplayName);
-            final String _tmpPhotoUrl;
-            if (_cursor.isNull(_cursorIndexOfPhotoUrl)) {
-              _tmpPhotoUrl = null;
-            } else {
-              _tmpPhotoUrl = _cursor.getString(_cursorIndexOfPhotoUrl);
-            }
             final Integer _tmpAge;
             if (_cursor.isNull(_cursorIndexOfAge)) {
               _tmpAge = null;
@@ -311,12 +305,18 @@ public final class UserDao_Impl implements UserDao {
             } else {
               _tmpWeight = _cursor.getFloat(_cursorIndexOfWeight);
             }
-            final int _tmpDailyStepsGoal;
-            _tmpDailyStepsGoal = _cursor.getInt(_cursorIndexOfDailyStepsGoal);
-            final int _tmpDailyCaloriesGoal;
-            _tmpDailyCaloriesGoal = _cursor.getInt(_cursorIndexOfDailyCaloriesGoal);
             final int _tmpDailyWaterGoal;
             _tmpDailyWaterGoal = _cursor.getInt(_cursorIndexOfDailyWaterGoal);
+            final int _tmpDailyCalorieGoal;
+            _tmpDailyCalorieGoal = _cursor.getInt(_cursorIndexOfDailyCalorieGoal);
+            final int _tmpDailyStepsGoal;
+            _tmpDailyStepsGoal = _cursor.getInt(_cursorIndexOfDailyStepsGoal);
+            final String _tmpProfileImageUrl;
+            if (_cursor.isNull(_cursorIndexOfProfileImageUrl)) {
+              _tmpProfileImageUrl = null;
+            } else {
+              _tmpProfileImageUrl = _cursor.getString(_cursorIndexOfProfileImageUrl);
+            }
             final Date _tmpCreatedAt;
             final Long _tmp;
             if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
@@ -343,7 +343,7 @@ public final class UserDao_Impl implements UserDao {
             } else {
               _tmpUpdatedAt = _tmp_3;
             }
-            _result = new User(_tmpUid,_tmpEmail,_tmpDisplayName,_tmpPhotoUrl,_tmpAge,_tmpHeight,_tmpWeight,_tmpDailyStepsGoal,_tmpDailyCaloriesGoal,_tmpDailyWaterGoal,_tmpCreatedAt,_tmpUpdatedAt);
+            _result = new User(_tmpId,_tmpName,_tmpEmail,_tmpAge,_tmpHeight,_tmpWeight,_tmpDailyWaterGoal,_tmpDailyCalorieGoal,_tmpDailyStepsGoal,_tmpProfileImageUrl,_tmpCreatedAt,_tmpUpdatedAt);
           } else {
             _result = null;
           }
@@ -357,43 +357,37 @@ public final class UserDao_Impl implements UserDao {
   }
 
   @Override
-  public LiveData<User> getUserByIdLiveData(final String uid) {
-    final String _sql = "SELECT * FROM users WHERE uid = ?";
+  public LiveData<User> getUserByIdLiveData(final String userId) {
+    final String _sql = "SELECT * FROM users WHERE id = ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
-    _statement.bindString(_argIndex, uid);
+    _statement.bindString(_argIndex, userId);
     return __db.getInvalidationTracker().createLiveData(new String[] {"users"}, false, new Callable<User>() {
       @Override
       @Nullable
       public User call() throws Exception {
         final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
         try {
-          final int _cursorIndexOfUid = CursorUtil.getColumnIndexOrThrow(_cursor, "uid");
+          final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+          final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
           final int _cursorIndexOfEmail = CursorUtil.getColumnIndexOrThrow(_cursor, "email");
-          final int _cursorIndexOfDisplayName = CursorUtil.getColumnIndexOrThrow(_cursor, "displayName");
-          final int _cursorIndexOfPhotoUrl = CursorUtil.getColumnIndexOrThrow(_cursor, "photoUrl");
           final int _cursorIndexOfAge = CursorUtil.getColumnIndexOrThrow(_cursor, "age");
           final int _cursorIndexOfHeight = CursorUtil.getColumnIndexOrThrow(_cursor, "height");
           final int _cursorIndexOfWeight = CursorUtil.getColumnIndexOrThrow(_cursor, "weight");
-          final int _cursorIndexOfDailyStepsGoal = CursorUtil.getColumnIndexOrThrow(_cursor, "dailyStepsGoal");
-          final int _cursorIndexOfDailyCaloriesGoal = CursorUtil.getColumnIndexOrThrow(_cursor, "dailyCaloriesGoal");
           final int _cursorIndexOfDailyWaterGoal = CursorUtil.getColumnIndexOrThrow(_cursor, "dailyWaterGoal");
+          final int _cursorIndexOfDailyCalorieGoal = CursorUtil.getColumnIndexOrThrow(_cursor, "dailyCalorieGoal");
+          final int _cursorIndexOfDailyStepsGoal = CursorUtil.getColumnIndexOrThrow(_cursor, "dailyStepsGoal");
+          final int _cursorIndexOfProfileImageUrl = CursorUtil.getColumnIndexOrThrow(_cursor, "profileImageUrl");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
           final int _cursorIndexOfUpdatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "updatedAt");
           final User _result;
           if (_cursor.moveToFirst()) {
-            final String _tmpUid;
-            _tmpUid = _cursor.getString(_cursorIndexOfUid);
+            final String _tmpId;
+            _tmpId = _cursor.getString(_cursorIndexOfId);
+            final String _tmpName;
+            _tmpName = _cursor.getString(_cursorIndexOfName);
             final String _tmpEmail;
             _tmpEmail = _cursor.getString(_cursorIndexOfEmail);
-            final String _tmpDisplayName;
-            _tmpDisplayName = _cursor.getString(_cursorIndexOfDisplayName);
-            final String _tmpPhotoUrl;
-            if (_cursor.isNull(_cursorIndexOfPhotoUrl)) {
-              _tmpPhotoUrl = null;
-            } else {
-              _tmpPhotoUrl = _cursor.getString(_cursorIndexOfPhotoUrl);
-            }
             final Integer _tmpAge;
             if (_cursor.isNull(_cursorIndexOfAge)) {
               _tmpAge = null;
@@ -412,12 +406,18 @@ public final class UserDao_Impl implements UserDao {
             } else {
               _tmpWeight = _cursor.getFloat(_cursorIndexOfWeight);
             }
-            final int _tmpDailyStepsGoal;
-            _tmpDailyStepsGoal = _cursor.getInt(_cursorIndexOfDailyStepsGoal);
-            final int _tmpDailyCaloriesGoal;
-            _tmpDailyCaloriesGoal = _cursor.getInt(_cursorIndexOfDailyCaloriesGoal);
             final int _tmpDailyWaterGoal;
             _tmpDailyWaterGoal = _cursor.getInt(_cursorIndexOfDailyWaterGoal);
+            final int _tmpDailyCalorieGoal;
+            _tmpDailyCalorieGoal = _cursor.getInt(_cursorIndexOfDailyCalorieGoal);
+            final int _tmpDailyStepsGoal;
+            _tmpDailyStepsGoal = _cursor.getInt(_cursorIndexOfDailyStepsGoal);
+            final String _tmpProfileImageUrl;
+            if (_cursor.isNull(_cursorIndexOfProfileImageUrl)) {
+              _tmpProfileImageUrl = null;
+            } else {
+              _tmpProfileImageUrl = _cursor.getString(_cursorIndexOfProfileImageUrl);
+            }
             final Date _tmpCreatedAt;
             final Long _tmp;
             if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
@@ -444,7 +444,7 @@ public final class UserDao_Impl implements UserDao {
             } else {
               _tmpUpdatedAt = _tmp_3;
             }
-            _result = new User(_tmpUid,_tmpEmail,_tmpDisplayName,_tmpPhotoUrl,_tmpAge,_tmpHeight,_tmpWeight,_tmpDailyStepsGoal,_tmpDailyCaloriesGoal,_tmpDailyWaterGoal,_tmpCreatedAt,_tmpUpdatedAt);
+            _result = new User(_tmpId,_tmpName,_tmpEmail,_tmpAge,_tmpHeight,_tmpWeight,_tmpDailyWaterGoal,_tmpDailyCalorieGoal,_tmpDailyStepsGoal,_tmpProfileImageUrl,_tmpCreatedAt,_tmpUpdatedAt);
           } else {
             _result = null;
           }
