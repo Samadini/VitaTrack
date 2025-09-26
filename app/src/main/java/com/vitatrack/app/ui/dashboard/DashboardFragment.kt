@@ -25,20 +25,30 @@ import java.util.*
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding ?: throw IllegalStateException("Fragment binding is null")
     
     private val viewModel: DashboardViewModel by viewModels {
-        DashboardViewModelFactory(
-            (requireActivity().application as VitaTrackApplication).userRepository,
-            (requireActivity().application as VitaTrackApplication).database.mealDao(),
-            (requireActivity().application as VitaTrackApplication).database.waterIntakeDao()
-        )
+        try {
+            val app = requireActivity().application as VitaTrackApplication
+            DashboardViewModelFactory(
+                app.userRepository,
+                app.database.mealDao(),
+                app.database.waterIntakeDao()
+            )
+        } catch (e: Exception) {
+            Log.e("DashboardFragment", "Error creating ViewModel", e)
+            throw e
+        }
     }
     
     private val waterViewModel: WaterTrackingViewModel by viewModels {
-        WaterTrackingViewModelFactory(
-            (requireActivity().application as VitaTrackApplication).database.waterIntakeDao()
-        )
+        try {
+            val app = requireActivity().application as VitaTrackApplication
+            WaterTrackingViewModelFactory(app.database.waterIntakeDao())
+        } catch (e: Exception) {
+            Log.e("DashboardFragment", "Error creating WaterViewModel", e)
+            throw e
+        }
     }
     
     private lateinit var recentActivityAdapter: RecentActivityAdapter
@@ -56,12 +66,20 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        auth = FirebaseAuth.getInstance()
-        
-        setupWaterTracking()
-        setupClickListeners()
-        observeViewModels()
-        loadDashboardData()
+        try {
+            auth = FirebaseAuth.getInstance()
+            
+            setupUI()
+            setupRecyclerView()
+            setupWaterTracking()
+            setupClickListeners()
+            observeViewModels()
+            loadDashboardData()
+        } catch (e: Exception) {
+            Log.e("DashboardFragment", "Error in onViewCreated", e)
+            // Show error message to user
+            Toast.makeText(context, "Error loading dashboard. Please try again.", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun setupUI() {
