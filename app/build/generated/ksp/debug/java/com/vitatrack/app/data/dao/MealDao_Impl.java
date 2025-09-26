@@ -11,19 +11,23 @@ import androidx.room.EntityInsertionAdapter;
 import androidx.room.RoomDatabase;
 import androidx.room.RoomSQLiteQuery;
 import androidx.room.SharedSQLiteStatement;
+import androidx.room.util.CursorUtil;
 import androidx.room.util.DBUtil;
 import androidx.sqlite.db.SupportSQLiteStatement;
 import com.vitatrack.app.data.database.Converters;
 import com.vitatrack.app.data.model.Meal;
+import com.vitatrack.app.data.model.MealType;
 import java.lang.Class;
 import java.lang.Exception;
 import java.lang.Float;
+import java.lang.IllegalStateException;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -53,7 +57,7 @@ public final class MealDao_Impl implements MealDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `meals` (`id`,`userId`,`name`,`type`,`calories`,`protein`,`carbs`,`fat`,`fiber`,`sugar`,`notes`,`date`,`createdAt`,`updatedAt`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR ABORT INTO `meals` (`id`,`userId`,`name`,`type`,`calories`,`protein`,`carbs`,`fat`,`fiber`,`sugar`,`notes`,`date`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -206,16 +210,16 @@ public final class MealDao_Impl implements MealDao {
   }
 
   @Override
-  public Object insertMeal(final Meal meal, final Continuation<? super Long> $completion) {
-    return CoroutinesRoom.execute(__db, true, new Callable<Long>() {
+  public Object insertMeal(final Meal meal, final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
-      public Long call() throws Exception {
+      public Unit call() throws Exception {
         __db.beginTransaction();
         try {
-          final Long _result = __insertionAdapterOfMeal.insertAndReturnId(meal);
+          __insertionAdapterOfMeal.insert(meal);
           __db.setTransactionSuccessful();
-          return _result;
+          return Unit.INSTANCE;
         } finally {
           __db.endTransaction();
         }
@@ -260,14 +264,14 @@ public final class MealDao_Impl implements MealDao {
   }
 
   @Override
-  public Object deleteMealById(final long id, final Continuation<? super Unit> $completion) {
+  public Object deleteMealById(final String id, final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
       public Unit call() throws Exception {
         final SupportSQLiteStatement _stmt = __preparedStmtOfDeleteMealById.acquire();
         int _argIndex = 1;
-        _stmt.bindLong(_argIndex, id);
+        _stmt.bindString(_argIndex, id);
         try {
           __db.beginTransaction();
           try {
@@ -296,6 +300,103 @@ public final class MealDao_Impl implements MealDao {
       public List<Meal> call() throws Exception {
         final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
         try {
+          final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+          final int _cursorIndexOfUserId = CursorUtil.getColumnIndexOrThrow(_cursor, "userId");
+          final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
+          final int _cursorIndexOfType = CursorUtil.getColumnIndexOrThrow(_cursor, "type");
+          final int _cursorIndexOfCalories = CursorUtil.getColumnIndexOrThrow(_cursor, "calories");
+          final int _cursorIndexOfProtein = CursorUtil.getColumnIndexOrThrow(_cursor, "protein");
+          final int _cursorIndexOfCarbs = CursorUtil.getColumnIndexOrThrow(_cursor, "carbs");
+          final int _cursorIndexOfFat = CursorUtil.getColumnIndexOrThrow(_cursor, "fat");
+          final int _cursorIndexOfFiber = CursorUtil.getColumnIndexOrThrow(_cursor, "fiber");
+          final int _cursorIndexOfSugar = CursorUtil.getColumnIndexOrThrow(_cursor, "sugar");
+          final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
+          final int _cursorIndexOfDate = CursorUtil.getColumnIndexOrThrow(_cursor, "date");
+          final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
+          final int _cursorIndexOfUpdatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "updatedAt");
+          final List<Meal> _result = new ArrayList<Meal>(_cursor.getCount());
+          while (_cursor.moveToNext()) {
+            final Meal _item;
+            final String _tmpId;
+            _tmpId = _cursor.getString(_cursorIndexOfId);
+            final String _tmpUserId;
+            _tmpUserId = _cursor.getString(_cursorIndexOfUserId);
+            final String _tmpName;
+            _tmpName = _cursor.getString(_cursorIndexOfName);
+            final MealType _tmpType;
+            final String _tmp;
+            _tmp = _cursor.getString(_cursorIndexOfType);
+            _tmpType = __converters.toMealType(_tmp);
+            final int _tmpCalories;
+            _tmpCalories = _cursor.getInt(_cursorIndexOfCalories);
+            final Float _tmpProtein;
+            if (_cursor.isNull(_cursorIndexOfProtein)) {
+              _tmpProtein = null;
+            } else {
+              _tmpProtein = _cursor.getFloat(_cursorIndexOfProtein);
+            }
+            final Float _tmpCarbs;
+            if (_cursor.isNull(_cursorIndexOfCarbs)) {
+              _tmpCarbs = null;
+            } else {
+              _tmpCarbs = _cursor.getFloat(_cursorIndexOfCarbs);
+            }
+            final Float _tmpFat;
+            if (_cursor.isNull(_cursorIndexOfFat)) {
+              _tmpFat = null;
+            } else {
+              _tmpFat = _cursor.getFloat(_cursorIndexOfFat);
+            }
+            final Float _tmpFiber;
+            if (_cursor.isNull(_cursorIndexOfFiber)) {
+              _tmpFiber = null;
+            } else {
+              _tmpFiber = _cursor.getFloat(_cursorIndexOfFiber);
+            }
+            final Float _tmpSugar;
+            if (_cursor.isNull(_cursorIndexOfSugar)) {
+              _tmpSugar = null;
+            } else {
+              _tmpSugar = _cursor.getFloat(_cursorIndexOfSugar);
+            }
+            final String _tmpNotes;
+            if (_cursor.isNull(_cursorIndexOfNotes)) {
+              _tmpNotes = null;
+            } else {
+              _tmpNotes = _cursor.getString(_cursorIndexOfNotes);
+            }
+            final Date _tmpDate;
+            final Long _tmp_1;
+            if (_cursor.isNull(_cursorIndexOfDate)) {
+              _tmp_1 = null;
+            } else {
+              _tmp_1 = _cursor.getLong(_cursorIndexOfDate);
+            }
+            final Date _tmp_2 = __converters.fromTimestamp(_tmp_1);
+            if (_tmp_2 == null) {
+              throw new IllegalStateException("Expected NON-NULL 'java.util.Date', but it was NULL.");
+            } else {
+              _tmpDate = _tmp_2;
+            }
+            final Date _tmpCreatedAt;
+            final Long _tmp_3;
+            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
+              _tmp_3 = null;
+            } else {
+              _tmp_3 = _cursor.getLong(_cursorIndexOfCreatedAt);
+            }
+            _tmpCreatedAt = __converters.fromTimestamp(_tmp_3);
+            final Date _tmpUpdatedAt;
+            final Long _tmp_4;
+            if (_cursor.isNull(_cursorIndexOfUpdatedAt)) {
+              _tmp_4 = null;
+            } else {
+              _tmp_4 = _cursor.getLong(_cursorIndexOfUpdatedAt);
+            }
+            _tmpUpdatedAt = __converters.fromTimestamp(_tmp_4);
+            _item = new Meal(_tmpId,_tmpUserId,_tmpName,_tmpType,_tmpCalories,_tmpProtein,_tmpCarbs,_tmpFat,_tmpFiber,_tmpSugar,_tmpNotes,_tmpDate,_tmpCreatedAt,_tmpUpdatedAt);
+            _result.add(_item);
+          }
           return _result;
         } finally {
           _cursor.close();
@@ -336,6 +437,103 @@ public final class MealDao_Impl implements MealDao {
       public List<Meal> call() throws Exception {
         final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
         try {
+          final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+          final int _cursorIndexOfUserId = CursorUtil.getColumnIndexOrThrow(_cursor, "userId");
+          final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
+          final int _cursorIndexOfType = CursorUtil.getColumnIndexOrThrow(_cursor, "type");
+          final int _cursorIndexOfCalories = CursorUtil.getColumnIndexOrThrow(_cursor, "calories");
+          final int _cursorIndexOfProtein = CursorUtil.getColumnIndexOrThrow(_cursor, "protein");
+          final int _cursorIndexOfCarbs = CursorUtil.getColumnIndexOrThrow(_cursor, "carbs");
+          final int _cursorIndexOfFat = CursorUtil.getColumnIndexOrThrow(_cursor, "fat");
+          final int _cursorIndexOfFiber = CursorUtil.getColumnIndexOrThrow(_cursor, "fiber");
+          final int _cursorIndexOfSugar = CursorUtil.getColumnIndexOrThrow(_cursor, "sugar");
+          final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
+          final int _cursorIndexOfDate = CursorUtil.getColumnIndexOrThrow(_cursor, "date");
+          final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
+          final int _cursorIndexOfUpdatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "updatedAt");
+          final List<Meal> _result = new ArrayList<Meal>(_cursor.getCount());
+          while (_cursor.moveToNext()) {
+            final Meal _item;
+            final String _tmpId;
+            _tmpId = _cursor.getString(_cursorIndexOfId);
+            final String _tmpUserId;
+            _tmpUserId = _cursor.getString(_cursorIndexOfUserId);
+            final String _tmpName;
+            _tmpName = _cursor.getString(_cursorIndexOfName);
+            final MealType _tmpType;
+            final String _tmp_2;
+            _tmp_2 = _cursor.getString(_cursorIndexOfType);
+            _tmpType = __converters.toMealType(_tmp_2);
+            final int _tmpCalories;
+            _tmpCalories = _cursor.getInt(_cursorIndexOfCalories);
+            final Float _tmpProtein;
+            if (_cursor.isNull(_cursorIndexOfProtein)) {
+              _tmpProtein = null;
+            } else {
+              _tmpProtein = _cursor.getFloat(_cursorIndexOfProtein);
+            }
+            final Float _tmpCarbs;
+            if (_cursor.isNull(_cursorIndexOfCarbs)) {
+              _tmpCarbs = null;
+            } else {
+              _tmpCarbs = _cursor.getFloat(_cursorIndexOfCarbs);
+            }
+            final Float _tmpFat;
+            if (_cursor.isNull(_cursorIndexOfFat)) {
+              _tmpFat = null;
+            } else {
+              _tmpFat = _cursor.getFloat(_cursorIndexOfFat);
+            }
+            final Float _tmpFiber;
+            if (_cursor.isNull(_cursorIndexOfFiber)) {
+              _tmpFiber = null;
+            } else {
+              _tmpFiber = _cursor.getFloat(_cursorIndexOfFiber);
+            }
+            final Float _tmpSugar;
+            if (_cursor.isNull(_cursorIndexOfSugar)) {
+              _tmpSugar = null;
+            } else {
+              _tmpSugar = _cursor.getFloat(_cursorIndexOfSugar);
+            }
+            final String _tmpNotes;
+            if (_cursor.isNull(_cursorIndexOfNotes)) {
+              _tmpNotes = null;
+            } else {
+              _tmpNotes = _cursor.getString(_cursorIndexOfNotes);
+            }
+            final Date _tmpDate;
+            final Long _tmp_3;
+            if (_cursor.isNull(_cursorIndexOfDate)) {
+              _tmp_3 = null;
+            } else {
+              _tmp_3 = _cursor.getLong(_cursorIndexOfDate);
+            }
+            final Date _tmp_4 = __converters.fromTimestamp(_tmp_3);
+            if (_tmp_4 == null) {
+              throw new IllegalStateException("Expected NON-NULL 'java.util.Date', but it was NULL.");
+            } else {
+              _tmpDate = _tmp_4;
+            }
+            final Date _tmpCreatedAt;
+            final Long _tmp_5;
+            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
+              _tmp_5 = null;
+            } else {
+              _tmp_5 = _cursor.getLong(_cursorIndexOfCreatedAt);
+            }
+            _tmpCreatedAt = __converters.fromTimestamp(_tmp_5);
+            final Date _tmpUpdatedAt;
+            final Long _tmp_6;
+            if (_cursor.isNull(_cursorIndexOfUpdatedAt)) {
+              _tmp_6 = null;
+            } else {
+              _tmp_6 = _cursor.getLong(_cursorIndexOfUpdatedAt);
+            }
+            _tmpUpdatedAt = __converters.fromTimestamp(_tmp_6);
+            _item = new Meal(_tmpId,_tmpUserId,_tmpName,_tmpType,_tmpCalories,_tmpProtein,_tmpCarbs,_tmpFat,_tmpFiber,_tmpSugar,_tmpNotes,_tmpDate,_tmpCreatedAt,_tmpUpdatedAt);
+            _result.add(_item);
+          }
           return _result;
         } finally {
           _cursor.close();
@@ -350,11 +548,11 @@ public final class MealDao_Impl implements MealDao {
   }
 
   @Override
-  public Object getMealById(final long id, final Continuation<? super Meal> $completion) {
+  public Object getMealById(final String id, final Continuation<? super Meal> $completion) {
     final String _sql = "SELECT * FROM meals WHERE id = ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
-    _statement.bindLong(_argIndex, id);
+    _statement.bindString(_argIndex, id);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
     return CoroutinesRoom.execute(__db, false, _cancellationSignal, new Callable<Meal>() {
       @Override
@@ -362,6 +560,103 @@ public final class MealDao_Impl implements MealDao {
       public Meal call() throws Exception {
         final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
         try {
+          final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+          final int _cursorIndexOfUserId = CursorUtil.getColumnIndexOrThrow(_cursor, "userId");
+          final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
+          final int _cursorIndexOfType = CursorUtil.getColumnIndexOrThrow(_cursor, "type");
+          final int _cursorIndexOfCalories = CursorUtil.getColumnIndexOrThrow(_cursor, "calories");
+          final int _cursorIndexOfProtein = CursorUtil.getColumnIndexOrThrow(_cursor, "protein");
+          final int _cursorIndexOfCarbs = CursorUtil.getColumnIndexOrThrow(_cursor, "carbs");
+          final int _cursorIndexOfFat = CursorUtil.getColumnIndexOrThrow(_cursor, "fat");
+          final int _cursorIndexOfFiber = CursorUtil.getColumnIndexOrThrow(_cursor, "fiber");
+          final int _cursorIndexOfSugar = CursorUtil.getColumnIndexOrThrow(_cursor, "sugar");
+          final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
+          final int _cursorIndexOfDate = CursorUtil.getColumnIndexOrThrow(_cursor, "date");
+          final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
+          final int _cursorIndexOfUpdatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "updatedAt");
+          final Meal _result;
+          if (_cursor.moveToFirst()) {
+            final String _tmpId;
+            _tmpId = _cursor.getString(_cursorIndexOfId);
+            final String _tmpUserId;
+            _tmpUserId = _cursor.getString(_cursorIndexOfUserId);
+            final String _tmpName;
+            _tmpName = _cursor.getString(_cursorIndexOfName);
+            final MealType _tmpType;
+            final String _tmp;
+            _tmp = _cursor.getString(_cursorIndexOfType);
+            _tmpType = __converters.toMealType(_tmp);
+            final int _tmpCalories;
+            _tmpCalories = _cursor.getInt(_cursorIndexOfCalories);
+            final Float _tmpProtein;
+            if (_cursor.isNull(_cursorIndexOfProtein)) {
+              _tmpProtein = null;
+            } else {
+              _tmpProtein = _cursor.getFloat(_cursorIndexOfProtein);
+            }
+            final Float _tmpCarbs;
+            if (_cursor.isNull(_cursorIndexOfCarbs)) {
+              _tmpCarbs = null;
+            } else {
+              _tmpCarbs = _cursor.getFloat(_cursorIndexOfCarbs);
+            }
+            final Float _tmpFat;
+            if (_cursor.isNull(_cursorIndexOfFat)) {
+              _tmpFat = null;
+            } else {
+              _tmpFat = _cursor.getFloat(_cursorIndexOfFat);
+            }
+            final Float _tmpFiber;
+            if (_cursor.isNull(_cursorIndexOfFiber)) {
+              _tmpFiber = null;
+            } else {
+              _tmpFiber = _cursor.getFloat(_cursorIndexOfFiber);
+            }
+            final Float _tmpSugar;
+            if (_cursor.isNull(_cursorIndexOfSugar)) {
+              _tmpSugar = null;
+            } else {
+              _tmpSugar = _cursor.getFloat(_cursorIndexOfSugar);
+            }
+            final String _tmpNotes;
+            if (_cursor.isNull(_cursorIndexOfNotes)) {
+              _tmpNotes = null;
+            } else {
+              _tmpNotes = _cursor.getString(_cursorIndexOfNotes);
+            }
+            final Date _tmpDate;
+            final Long _tmp_1;
+            if (_cursor.isNull(_cursorIndexOfDate)) {
+              _tmp_1 = null;
+            } else {
+              _tmp_1 = _cursor.getLong(_cursorIndexOfDate);
+            }
+            final Date _tmp_2 = __converters.fromTimestamp(_tmp_1);
+            if (_tmp_2 == null) {
+              throw new IllegalStateException("Expected NON-NULL 'java.util.Date', but it was NULL.");
+            } else {
+              _tmpDate = _tmp_2;
+            }
+            final Date _tmpCreatedAt;
+            final Long _tmp_3;
+            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
+              _tmp_3 = null;
+            } else {
+              _tmp_3 = _cursor.getLong(_cursorIndexOfCreatedAt);
+            }
+            _tmpCreatedAt = __converters.fromTimestamp(_tmp_3);
+            final Date _tmpUpdatedAt;
+            final Long _tmp_4;
+            if (_cursor.isNull(_cursorIndexOfUpdatedAt)) {
+              _tmp_4 = null;
+            } else {
+              _tmp_4 = _cursor.getLong(_cursorIndexOfUpdatedAt);
+            }
+            _tmpUpdatedAt = __converters.fromTimestamp(_tmp_4);
+            _result = new Meal(_tmpId,_tmpUserId,_tmpName,_tmpType,_tmpCalories,_tmpProtein,_tmpCarbs,_tmpFat,_tmpFiber,_tmpSugar,_tmpNotes,_tmpDate,_tmpCreatedAt,_tmpUpdatedAt);
+          } else {
+            _result = null;
+          }
           return _result;
         } finally {
           _cursor.close();
@@ -399,6 +694,18 @@ public final class MealDao_Impl implements MealDao {
       public Integer call() throws Exception {
         final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
         try {
+          final Integer _result;
+          if (_cursor.moveToFirst()) {
+            final Integer _tmp_2;
+            if (_cursor.isNull(0)) {
+              _tmp_2 = null;
+            } else {
+              _tmp_2 = _cursor.getInt(0);
+            }
+            _result = _tmp_2;
+          } else {
+            _result = null;
+          }
           return _result;
         } finally {
           _cursor.close();
@@ -436,6 +743,18 @@ public final class MealDao_Impl implements MealDao {
       public Float call() throws Exception {
         final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
         try {
+          final Float _result;
+          if (_cursor.moveToFirst()) {
+            final Float _tmp_2;
+            if (_cursor.isNull(0)) {
+              _tmp_2 = null;
+            } else {
+              _tmp_2 = _cursor.getFloat(0);
+            }
+            _result = _tmp_2;
+          } else {
+            _result = null;
+          }
           return _result;
         } finally {
           _cursor.close();
@@ -473,6 +792,18 @@ public final class MealDao_Impl implements MealDao {
       public Float call() throws Exception {
         final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
         try {
+          final Float _result;
+          if (_cursor.moveToFirst()) {
+            final Float _tmp_2;
+            if (_cursor.isNull(0)) {
+              _tmp_2 = null;
+            } else {
+              _tmp_2 = _cursor.getFloat(0);
+            }
+            _result = _tmp_2;
+          } else {
+            _result = null;
+          }
           return _result;
         } finally {
           _cursor.close();
@@ -510,6 +841,18 @@ public final class MealDao_Impl implements MealDao {
       public Float call() throws Exception {
         final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
         try {
+          final Float _result;
+          if (_cursor.moveToFirst()) {
+            final Float _tmp_2;
+            if (_cursor.isNull(0)) {
+              _tmp_2 = null;
+            } else {
+              _tmp_2 = _cursor.getFloat(0);
+            }
+            _result = _tmp_2;
+          } else {
+            _result = null;
+          }
           return _result;
         } finally {
           _cursor.close();

@@ -36,7 +36,7 @@ class WaterLogAdapter(
 
         fun bind(waterIntake: WaterIntake) {
             binding.apply {
-                tvWaterAmount.text = "${waterIntake.amount}ml"
+                tvWaterAmount.text = "${waterIntake.amountMl}ml"
                 tvWaterTime.text = timeFormat.format(waterIntake.date)
 
                 btnDeleteWater.setOnClickListener {

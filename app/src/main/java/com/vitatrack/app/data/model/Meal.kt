@@ -8,7 +8,7 @@ import java.util.Date
 
 @Entity(tableName = "meals")
 data class Meal(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @DocumentId
     val id: String = "",
     val userId: String = "",

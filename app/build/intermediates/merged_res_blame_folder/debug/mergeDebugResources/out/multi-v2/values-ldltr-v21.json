@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.vitatrack.app-mergeDebugResources-66:/values-ldltr-v21/values-ldltr-v21.xml",
+            "outputFile": "com.vitatrack.app-mergeDebugResources-64:/values-ldltr-v21/values-ldltr-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Samadini Pasanya\\.gradle\\caches\\8.13\\transforms\\efab565a4218f9991d1d608f906b63c8\\transformed\\appcompat-1.7.0\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
+                    "source": "C:\\Users\\Samadini Pasanya\\.gradle\\caches\\transforms-4\\672286c85082fd5d85a5cbcf0b25928d\\transformed\\appcompat-1.6.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

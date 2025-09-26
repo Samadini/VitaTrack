@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.vitatrack.app-mergeDebugResources-66:/values-v27/values-v27.xml",
+            "outputFile": "com.vitatrack.app-mergeDebugResources-64:/values-v27/values-v27.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Samadini Pasanya\\.gradle\\caches\\8.13\\transforms\\e9ff0c3b05d2090807243246a2d7ec3e\\transformed\\core-splashscreen-1.0.1\\res\\values-v27\\values-v27.xml",
+                    "source": "C:\\Users\\Samadini Pasanya\\.gradle\\caches\\transforms-4\\7b5636eac388f03e2eefbd1f53cb797d\\transformed\\core-splashscreen-1.0.1\\res\\values-v27\\values-v27.xml",
                     "from": {
                         "startLines": "2,3,4,7",
                         "startColumns": "4,4,4,4",

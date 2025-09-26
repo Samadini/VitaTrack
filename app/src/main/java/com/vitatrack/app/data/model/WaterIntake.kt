@@ -8,7 +8,7 @@ import java.util.Date
 
 @Entity(tableName = "water_intake")
 data class WaterIntake(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @DocumentId
     val id: String = "",
     val userId: String = "",

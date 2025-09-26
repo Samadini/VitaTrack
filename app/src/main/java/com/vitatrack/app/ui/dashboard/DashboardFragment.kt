@@ -27,27 +27,32 @@ class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding ?: throw IllegalStateException("Fragment binding is null")
     
-    private val viewModel: DashboardViewModel by viewModels {
+    // Lazy initialization to avoid crashes during fragment creation
+    private val viewModel: DashboardViewModel by lazy {
         try {
             val app = requireActivity().application as VitaTrackApplication
-            DashboardViewModelFactory(
+            val factory = DashboardViewModelFactory(
                 app.userRepository,
                 app.database.mealDao(),
                 app.database.waterIntakeDao()
             )
+            androidx.lifecycle.ViewModelProvider(this, factory)[DashboardViewModel::class.java]
         } catch (e: Exception) {
-            Log.e("DashboardFragment", "Error creating ViewModel", e)
-            throw e
+            Log.e("DashboardFragment", "Error creating DashboardViewModel", e)
+            // Create a basic ViewModel without factory as fallback
+            androidx.lifecycle.ViewModelProvider(this)[DashboardViewModel::class.java]
         }
     }
     
-    private val waterViewModel: WaterTrackingViewModel by viewModels {
+    private val waterViewModel: WaterTrackingViewModel by lazy {
         try {
             val app = requireActivity().application as VitaTrackApplication
-            WaterTrackingViewModelFactory(app.database.waterIntakeDao())
+            val factory = WaterTrackingViewModelFactory(app.database.waterIntakeDao())
+            androidx.lifecycle.ViewModelProvider(this, factory)[WaterTrackingViewModel::class.java]
         } catch (e: Exception) {
             Log.e("DashboardFragment", "Error creating WaterViewModel", e)
-            throw e
+            // Create a basic ViewModel without factory as fallback
+            androidx.lifecycle.ViewModelProvider(this)[WaterTrackingViewModel::class.java]
         }
     }
     
@@ -66,38 +71,72 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
+        Log.d("DashboardFragment", "onViewCreated started")
+        
         try {
+            // Initialize Firebase Auth
             auth = FirebaseAuth.getInstance()
+            Log.d("DashboardFragment", "Firebase Auth initialized")
             
+            // Setup UI components step by step with individual error handling
             setupUI()
             setupRecyclerView()
             setupWaterTracking()
             setupClickListeners()
+            
+            // Initialize ViewModels and observe data
+            initializeViewModels()
             observeViewModels()
             loadDashboardData()
+            
+            Log.d("DashboardFragment", "onViewCreated completed successfully")
+            
         } catch (e: Exception) {
-            Log.e("DashboardFragment", "Error in onViewCreated", e)
-            // Show error message to user
-            Toast.makeText(context, "Error loading dashboard. Please try again.", Toast.LENGTH_LONG).show()
+            Log.e("DashboardFragment", "Critical error in onViewCreated", e)
+            // Show error message to user but don't crash
+            try {
+                Toast.makeText(context, "Dashboard loaded with limited functionality", Toast.LENGTH_LONG).show()
+            } catch (toastError: Exception) {
+                Log.e("DashboardFragment", "Even toast failed", toastError)
+            }
+        }
+    }
+    
+    private fun initializeViewModels() {
+        try {
+            // Access ViewModels to trigger initialization
+            Log.d("DashboardFragment", "Initializing ViewModels...")
+            val vm = viewModel // This triggers lazy initialization
+            val wvm = waterViewModel // This triggers lazy initialization
+            Log.d("DashboardFragment", "ViewModels initialized successfully")
+        } catch (e: Exception) {
+            Log.e("DashboardFragment", "Error initializing ViewModels", e)
+            // Continue without ViewModels if necessary
         }
     }
 
     private fun setupUI() {
-        // Set welcome message based on time of day
-        val calendar = Calendar.getInstance()
-        val hour = calendar.get(Calendar.HOUR_OF_DAY)
-        
-        val greeting = when (hour) {
-            in 0..11 -> "Good Morning!"
-            in 12..17 -> "Good Afternoon!"
-            else -> "Good Evening!"
+        try {
+            // Set welcome message based on time of day
+            val calendar = Calendar.getInstance()
+            val hour = calendar.get(Calendar.HOUR_OF_DAY)
+            
+            val greeting = when (hour) {
+                in 0..11 -> "Good Morning!"
+                in 12..17 -> "Good Afternoon!"
+                else -> "Good Evening!"
+            }
+            
+            _binding?.tvWelcome?.text = greeting
+            
+            // Set user name
+            val currentUser = auth.currentUser
+            _binding?.tvUserName?.text = currentUser?.displayName ?: "User"
+            
+            Log.d("DashboardFragment", "UI setup completed successfully")
+        } catch (e: Exception) {
+            Log.e("DashboardFragment", "Error setting up UI", e)
         }
-        
-        binding.tvWelcome.text = greeting
-        
-        // Set user name
-        val currentUser = auth.currentUser
-        binding.tvUserName.text = currentUser?.displayName ?: "User"
     }
 
     private fun setupRecyclerView() {
@@ -107,7 +146,7 @@ class DashboardFragment : Fragment() {
                 // TODO: Navigate to activity details
             }
             
-            binding.rvRecentActivity.apply {
+            _binding?.rvRecentActivity?.apply {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = recentActivityAdapter
             }
@@ -216,27 +255,39 @@ class DashboardFragment : Fragment() {
     
     private fun setupClickListeners() {
         try {
-            binding.btnAddExercise?.setOnClickListener {
+            _binding?.btnAddExercise?.setOnClickListener {
                 // Exercise functionality temporarily disabled
                 Toast.makeText(context, "Exercise tracking coming soon!", Toast.LENGTH_SHORT).show()
             }
             
-            binding.btnAddMeal?.setOnClickListener {
+            _binding?.btnAddMeal?.setOnClickListener {
                 // Meal functionality coming soon
                 Toast.makeText(context, "Meal tracking coming soon!", Toast.LENGTH_SHORT).show()
             }
             
-            binding.btnAddWater?.setOnClickListener {
-                // Water functionality coming soon
-                Toast.makeText(context, "Use the +250ml and +500ml buttons!", Toast.LENGTH_SHORT).show()
+            _binding?.btnAddWater?.setOnClickListener {
+                // Navigate to Log Water Fragment
+                try {
+                    findNavController().navigate(R.id.action_dashboardFragment_to_logWaterFragment)
+                    Log.d("DashboardFragment", "Navigating to Log Water Fragment")
+                } catch (e: Exception) {
+                    Log.e("DashboardFragment", "Error navigating to Log Water Fragment", e)
+                    Toast.makeText(context, "Error opening water logging", Toast.LENGTH_SHORT).show()
+                }
             }
             
-            binding.tvViewAll?.setOnClickListener {
+            _binding?.tvViewAll?.setOnClickListener {
                 // Navigate to insights for now
-                findNavController().navigate(R.id.insightsFragment)
+                try {
+                    findNavController().navigate(R.id.insightsFragment)
+                } catch (e: Exception) {
+                    Log.e("DashboardFragment", "Navigation error", e)
+                }
             }
+            
+            Log.d("DashboardFragment", "Click listeners setup completed successfully")
         } catch (e: Exception) {
-            // Some buttons might not exist in current layout
+            Log.e("DashboardFragment", "Error setting up click listeners", e)
         }
     }
 
@@ -251,21 +302,21 @@ class DashboardFragment : Fragment() {
     private fun updateProgressCards(stats: DailyStats) {
         try {
             // Update steps
-            binding.tvStepsCount.text = stats.steps.toString()
-            binding.progressSteps.progress = stats.steps
+            _binding?.tvStepsCount?.text = stats.steps.toString()
+            _binding?.progressSteps?.progress = stats.steps
             
             // Update calories
-            binding.tvCaloriesCount.text = stats.calories.toString()
-            binding.progressCalories.progress = stats.calories
+            _binding?.tvCaloriesCount?.text = stats.calories.toString()
+            _binding?.progressCalories?.progress = stats.calories
             
             // Update water (convert ml to liters)
             val waterInLiters = stats.waterIntake / 1000f
-            binding.tvWaterCount.text = String.format("%.1fL", waterInLiters)
-            binding.progressWater.progress = stats.waterIntake
+            _binding?.tvWaterCount?.text = String.format("%.1fL", waterInLiters)
+            _binding?.progressWater?.progress = stats.waterIntake
             
             // Update exercise duration
-            binding.tvExerciseCount.text = "${stats.exerciseDuration} min"
-            binding.progressExercise.progress = stats.exerciseDuration
+            _binding?.tvExerciseCount?.text = "${stats.exerciseDuration} min"
+            _binding?.progressExercise?.progress = stats.exerciseDuration
             
             Log.d("DashboardFragment", "Progress cards updated successfully")
         } catch (e: Exception) {

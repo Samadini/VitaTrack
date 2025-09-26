@@ -15,7 +15,7 @@ interface MealDao {
     fun getMealsByDateRange(userId: String, startDate: Date, endDate: Date): LiveData<List<Meal>>
     
     @Query("SELECT * FROM meals WHERE id = :id")
-    suspend fun getMealById(id: Long): Meal?
+    suspend fun getMealById(id: String): Meal?
     
     @Query("SELECT SUM(calories) FROM meals WHERE userId = :userId AND date >= :startDate AND date <= :endDate")
     suspend fun getTotalCaloriesByDateRange(userId: String, startDate: Date, endDate: Date): Int?
@@ -30,7 +30,7 @@ interface MealDao {
     suspend fun getTotalFatByDateRange(userId: String, startDate: Date, endDate: Date): Float?
     
     @Insert
-    suspend fun insertMeal(meal: Meal): Long
+    suspend fun insertMeal(meal: Meal)
     
     @Update
     suspend fun updateMeal(meal: Meal)
@@ -39,5 +39,5 @@ interface MealDao {
     suspend fun deleteMeal(meal: Meal)
     
     @Query("DELETE FROM meals WHERE id = :id")
-    suspend fun deleteMealById(id: Long)
+    suspend fun deleteMealById(id: String)
 }

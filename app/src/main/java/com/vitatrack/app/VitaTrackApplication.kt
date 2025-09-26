@@ -6,10 +6,12 @@ import android.app.NotificationManager
 import android.os.Build
 import android.util.Log
 import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.vitatrack.app.data.database.VitaTrackDatabase
 import com.vitatrack.app.data.repository.UserRepository
 import com.vitatrack.app.utils.NotificationHelper
-import com.vitatrack.app.utils.FirebaseConfigValidator
 
 class VitaTrackApplication : Application() {
 
@@ -31,12 +33,15 @@ class VitaTrackApplication : Application() {
             FirebaseApp.initializeApp(this)
             Log.d(TAG, "Firebase initialized successfully")
             
+            // Configure Firestore settings for better performance
+            configureFirestore()
+            
+            // Configure Firebase Auth settings
+            configureFirebaseAuth()
+            
             // Create notification channels
             createNotificationChannels()
             Log.d(TAG, "Notification channels created")
-            
-            // Firebase validation (commented out to avoid startup crashes)
-            // FirebaseConfigValidator.validate(this)
             
         } catch (e: Exception) {
             Log.e(TAG, "Error during application initialization", e)
@@ -74,6 +79,31 @@ class VitaTrackApplication : Application() {
             channels.forEach { channel ->
                 notificationManager.createNotificationChannel(channel)
             }
+        }
+    }
+    
+    private fun configureFirestore() {
+        try {
+            val firestore = FirebaseFirestore.getInstance()
+            val settings = FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
+                .build()
+            firestore.firestoreSettings = settings
+            Log.d(TAG, "Firestore configured successfully")
+        } catch (e: Exception) {
+            Log.e(TAG, "Error configuring Firestore", e)
+        }
+    }
+    
+    private fun configureFirebaseAuth() {
+        try {
+            val auth = FirebaseAuth.getInstance()
+            // Enable auth state persistence
+            auth.useAppLanguage()
+            Log.d(TAG, "Firebase Auth configured successfully")
+        } catch (e: Exception) {
+            Log.e(TAG, "Error configuring Firebase Auth", e)
         }
     }
 

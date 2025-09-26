@@ -15,7 +15,7 @@ class WaterIntakeRepository(private val waterIntakeDao: WaterIntakeDao) {
         return waterIntakeDao.getWaterIntakeByDateRange(userId, startDate, endDate)
     }
     
-    suspend fun getWaterIntakeById(id: Long): WaterIntake? {
+    suspend fun getWaterIntakeById(id: String): WaterIntake? {
         return waterIntakeDao.getWaterIntakeById(id)
     }
     
@@ -23,8 +23,8 @@ class WaterIntakeRepository(private val waterIntakeDao: WaterIntakeDao) {
         return waterIntakeDao.getTotalWaterIntakeByDateRange(userId, startDate, endDate) ?: 0
     }
     
-    suspend fun insertWaterIntake(waterIntake: WaterIntake): Long {
-        return waterIntakeDao.insertWaterIntake(waterIntake)
+    suspend fun insertWaterIntake(waterIntake: WaterIntake) {
+        waterIntakeDao.insertWaterIntake(waterIntake)
     }
     
     suspend fun updateWaterIntake(waterIntake: WaterIntake) {
@@ -35,7 +35,7 @@ class WaterIntakeRepository(private val waterIntakeDao: WaterIntakeDao) {
         waterIntakeDao.deleteWaterIntake(waterIntake)
     }
     
-    suspend fun deleteWaterIntakeById(id: Long) {
+    suspend fun deleteWaterIntakeById(id: String) {
         waterIntakeDao.deleteWaterIntakeById(id)
     }
 }

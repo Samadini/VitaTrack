@@ -6,7 +6,18 @@
     <color name="background_gray">#F5F5F5</color>
     <color name="background_light_gray">#F8F9FA</color>
     <color name="background_white">#FFFFFF</color>
+    <color name="button_outline">#E1E5E9</color>
+    <color name="button_primary">#4A90E2</color>
+    <color name="button_primary_pressed">#2E5BBA</color>
     <color name="card_background">#FFFFFF</color>
+    <color name="colorAccent">#4CAF50</color>
+    <color name="colorBackground">#F5F5F5</color>
+    <color name="colorOnBackground">#1A1A1A</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnSurface">#1A1A1A</color>
+    <color name="colorPrimary">#4A90E2</color>
+    <color name="colorPrimaryDark">#2E5BBA</color>
+    <color name="colorSurface">#FFFFFF</color>
     <color name="error">#F44336</color>
     <color name="gradient_end">#2E5BBA</color>
     <color name="gradient_start">#4A90E2</color>
@@ -28,6 +39,9 @@
     <color name="text_secondary">#666666</color>
     <color name="text_white">#FFFFFF</color>
     <color name="warning">#FF9800</color>
+    <color name="water_blue">#2196F3</color>
+    <color name="water_dark_blue">#1976D2</color>
+    <color name="water_light_blue">#E3F2FD</color>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="button_corner_radius">12dp</dimen>
@@ -134,17 +148,17 @@
     <string name="weight">Weight</string>
     <string name="yoga">Yoga</string>
     <style name="Theme.VitaTrack" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/primary_blue</item>
-        <item name="colorPrimaryVariant">@color/primary_blue_dark</item>
-        <item name="colorOnPrimary">@color/text_white</item>
-        <item name="colorSecondary">@color/accent_green</item>
-        <item name="colorSecondaryVariant">@color/accent_green</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorSecondaryVariant">@color/colorAccent</item>
         <item name="colorOnSecondary">@color/text_white</item>
-        <item name="android:colorBackground">@color/background_white</item>
-        <item name="colorOnBackground">@color/text_primary</item>
-        <item name="colorSurface">@color/surface_color</item>
-        <item name="colorOnSurface">@color/text_primary</item>
-        <item name="android:statusBarColor">@color/primary_blue_dark</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="colorOnBackground">@color/colorOnBackground</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
     <style name="Theme.VitaTrack.Splash" parent="Theme.SplashScreen">
@@ -154,16 +168,16 @@
         <item name="postSplashScreenTheme">@style/Theme.VitaTrack</item>
     </style>
     <style name="VitaTrack.Button.Primary" parent="Widget.Material3.Button">
-        <item name="backgroundTint">@color/primary_blue</item>
-        <item name="android:textColor">@color/text_white</item>
+        <item name="backgroundTint">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorOnPrimary</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
         <item name="cornerRadius">12dp</item>
         <item name="android:minHeight">48dp</item>
     </style>
     <style name="VitaTrack.Button.Secondary" parent="Widget.Material3.Button.OutlinedButton">
-        <item name="strokeColor">@color/primary_blue</item>
-        <item name="android:textColor">@color/primary_blue</item>
+        <item name="strokeColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textSize">16sp</item>
         <item name="cornerRadius">12dp</item>
         <item name="android:minHeight">48dp</item>

@@ -25,53 +25,74 @@ class MainActivityNew : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "MainActivityNew onCreate started")
         
-        try {
-            binding = ActivityMainNewBinding.inflate(layoutInflater)
-            setContentView(binding.root)
-            
-            auth = FirebaseAuth.getInstance()
-            
-            // Check if user is logged in
-            if (auth.currentUser == null) {
-                redirectToAuth()
-                return
-            }
-            
-            setupNavigation()
-            setupToolbar()
-            
-        } catch (e: Exception) {
-            Log.e(TAG, "Error in onCreate", e)
+        // Initialize binding and auth first
+        binding = ActivityMainNewBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        
+        auth = FirebaseAuth.getInstance()
+        
+        // Check if user is logged in
+        if (auth.currentUser == null) {
+            Log.d(TAG, "No user logged in, redirecting to auth")
             redirectToAuth()
+            return
+        }
+        
+        Log.d(TAG, "User is logged in: ${auth.currentUser?.email}")
+        
+        // Setup components with individual error handling
+        setupNavigation()
+        setupToolbar()
+        
+        Log.d(TAG, "MainActivityNew onCreate completed successfully")
+    }
+    
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "MainActivityNew onResume")
+        
+        // Double-check user is still logged in
+        if (auth.currentUser == null) {
+            Log.w(TAG, "User session lost, redirecting to auth")
+            redirectToAuth()
+        } else {
+            Log.d(TAG, "User session valid: ${auth.currentUser?.email}")
         }
     }
     
     private fun setupNavigation() {
         try {
-            val navHostFragment = supportFragmentManager
-                .findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
-            
-            if (navHostFragment == null) {
-                Log.e(TAG, "NavHostFragment not found")
-                redirectToAuth()
-                return
+            // Wait a bit for the layout to be fully inflated
+            binding.root.post {
+                try {
+                    val navHostFragment = supportFragmentManager
+                        .findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
+                    
+                    if (navHostFragment == null) {
+                        Log.e(TAG, "NavHostFragment not found")
+                        return@post
+                    }
+                    
+                    val navController = navHostFragment.navController
+                    val bottomNav = binding.bottomNavigation
+                    
+                    if (bottomNav == null) {
+                        Log.e(TAG, "BottomNavigationView not found")
+                        return@post
+                    }
+                    
+                    bottomNav.setupWithNavController(navController)
+                    Log.d(TAG, "Navigation setup completed successfully")
+                    
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error in delayed navigation setup", e)
+                    // Don't redirect to auth here, just log the error
+                }
             }
-            
-            val navController = navHostFragment.navController
-            val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-            
-            if (bottomNav == null) {
-                Log.e(TAG, "BottomNavigationView not found")
-                redirectToAuth()
-                return
-            }
-            
-            bottomNav.setupWithNavController(navController)
-            Log.d(TAG, "Navigation setup completed successfully")
             
         } catch (e: Exception) {
             Log.e(TAG, "Error setting up navigation", e)
-            redirectToAuth()
+            // Don't redirect to auth immediately, let the app try to continue
         }
     }
     
@@ -87,7 +108,13 @@ class MainActivityNew : AppCompatActivity() {
     }
     
     private fun redirectToAuth() {
-        startActivity(Intent(this, SimpleAuthActivity::class.java))
-        finish()
+        Log.d(TAG, "Redirecting to auth activity")
+        try {
+            startActivity(Intent(this, SimpleAuthActivity::class.java))
+            finish()
+        } catch (e: Exception) {
+            Log.e(TAG, "Error redirecting to auth", e)
+            // Don't finish if we can't redirect
+        }
     }
 }

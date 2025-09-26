@@ -57,13 +57,13 @@ public final class MealDao_Impl implements MealDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `meals` (`id`,`userId`,`name`,`type`,`calories`,`protein`,`carbs`,`fat`,`fiber`,`sugar`,`notes`,`date`,`createdAt`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR ABORT INTO `meals` (`id`,`userId`,`name`,`type`,`calories`,`protein`,`carbs`,`fat`,`fiber`,`sugar`,`notes`,`date`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
       protected void bind(@NonNull final SupportSQLiteStatement statement,
           @NonNull final Meal entity) {
-        statement.bindLong(1, entity.getId());
+        statement.bindString(1, entity.getId());
         statement.bindString(2, entity.getUserId());
         statement.bindString(3, entity.getName());
         final String _tmp = __converters.fromMealType(entity.getType());
@@ -110,6 +110,12 @@ public final class MealDao_Impl implements MealDao {
           statement.bindNull(13);
         } else {
           statement.bindLong(13, _tmp_2);
+        }
+        final Long _tmp_3 = __converters.dateToTimestamp(entity.getUpdatedAt());
+        if (_tmp_3 == null) {
+          statement.bindNull(14);
+        } else {
+          statement.bindLong(14, _tmp_3);
         }
       }
     };
@@ -123,20 +129,20 @@ public final class MealDao_Impl implements MealDao {
       @Override
       protected void bind(@NonNull final SupportSQLiteStatement statement,
           @NonNull final Meal entity) {
-        statement.bindLong(1, entity.getId());
+        statement.bindString(1, entity.getId());
       }
     };
     this.__updateAdapterOfMeal = new EntityDeletionOrUpdateAdapter<Meal>(__db) {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `meals` SET `id` = ?,`userId` = ?,`name` = ?,`type` = ?,`calories` = ?,`protein` = ?,`carbs` = ?,`fat` = ?,`fiber` = ?,`sugar` = ?,`notes` = ?,`date` = ?,`createdAt` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `meals` SET `id` = ?,`userId` = ?,`name` = ?,`type` = ?,`calories` = ?,`protein` = ?,`carbs` = ?,`fat` = ?,`fiber` = ?,`sugar` = ?,`notes` = ?,`date` = ?,`createdAt` = ?,`updatedAt` = ? WHERE `id` = ?";
       }
 
       @Override
       protected void bind(@NonNull final SupportSQLiteStatement statement,
           @NonNull final Meal entity) {
-        statement.bindLong(1, entity.getId());
+        statement.bindString(1, entity.getId());
         statement.bindString(2, entity.getUserId());
         statement.bindString(3, entity.getName());
         final String _tmp = __converters.fromMealType(entity.getType());
@@ -184,7 +190,13 @@ public final class MealDao_Impl implements MealDao {
         } else {
           statement.bindLong(13, _tmp_2);
         }
-        statement.bindLong(14, entity.getId());
+        final Long _tmp_3 = __converters.dateToTimestamp(entity.getUpdatedAt());
+        if (_tmp_3 == null) {
+          statement.bindNull(14);
+        } else {
+          statement.bindLong(14, _tmp_3);
+        }
+        statement.bindString(15, entity.getId());
       }
     };
     this.__preparedStmtOfDeleteMealById = new SharedSQLiteStatement(__db) {
@@ -198,16 +210,16 @@ public final class MealDao_Impl implements MealDao {
   }
 
   @Override
-  public Object insertMeal(final Meal meal, final Continuation<? super Long> $completion) {
-    return CoroutinesRoom.execute(__db, true, new Callable<Long>() {
+  public Object insertMeal(final Meal meal, final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
-      public Long call() throws Exception {
+      public Unit call() throws Exception {
         __db.beginTransaction();
         try {
-          final Long _result = __insertionAdapterOfMeal.insertAndReturnId(meal);
+          __insertionAdapterOfMeal.insert(meal);
           __db.setTransactionSuccessful();
-          return _result;
+          return Unit.INSTANCE;
         } finally {
           __db.endTransaction();
         }
@@ -252,14 +264,14 @@ public final class MealDao_Impl implements MealDao {
   }
 
   @Override
-  public Object deleteMealById(final long id, final Continuation<? super Unit> $completion) {
+  public Object deleteMealById(final String id, final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
       public Unit call() throws Exception {
         final SupportSQLiteStatement _stmt = __preparedStmtOfDeleteMealById.acquire();
         int _argIndex = 1;
-        _stmt.bindLong(_argIndex, id);
+        _stmt.bindString(_argIndex, id);
         try {
           __db.beginTransaction();
           try {
@@ -301,11 +313,12 @@ public final class MealDao_Impl implements MealDao {
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfDate = CursorUtil.getColumnIndexOrThrow(_cursor, "date");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
+          final int _cursorIndexOfUpdatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "updatedAt");
           final List<Meal> _result = new ArrayList<Meal>(_cursor.getCount());
           while (_cursor.moveToNext()) {
             final Meal _item;
-            final long _tmpId;
-            _tmpId = _cursor.getLong(_cursorIndexOfId);
+            final String _tmpId;
+            _tmpId = _cursor.getString(_cursorIndexOfId);
             final String _tmpUserId;
             _tmpUserId = _cursor.getString(_cursorIndexOfUserId);
             final String _tmpName;
@@ -372,13 +385,16 @@ public final class MealDao_Impl implements MealDao {
             } else {
               _tmp_3 = _cursor.getLong(_cursorIndexOfCreatedAt);
             }
-            final Date _tmp_4 = __converters.fromTimestamp(_tmp_3);
-            if (_tmp_4 == null) {
-              throw new IllegalStateException("Expected NON-NULL 'java.util.Date', but it was NULL.");
+            _tmpCreatedAt = __converters.fromTimestamp(_tmp_3);
+            final Date _tmpUpdatedAt;
+            final Long _tmp_4;
+            if (_cursor.isNull(_cursorIndexOfUpdatedAt)) {
+              _tmp_4 = null;
             } else {
-              _tmpCreatedAt = _tmp_4;
+              _tmp_4 = _cursor.getLong(_cursorIndexOfUpdatedAt);
             }
-            _item = new Meal(_tmpId,_tmpUserId,_tmpName,_tmpType,_tmpCalories,_tmpProtein,_tmpCarbs,_tmpFat,_tmpFiber,_tmpSugar,_tmpNotes,_tmpDate,_tmpCreatedAt);
+            _tmpUpdatedAt = __converters.fromTimestamp(_tmp_4);
+            _item = new Meal(_tmpId,_tmpUserId,_tmpName,_tmpType,_tmpCalories,_tmpProtein,_tmpCarbs,_tmpFat,_tmpFiber,_tmpSugar,_tmpNotes,_tmpDate,_tmpCreatedAt,_tmpUpdatedAt);
             _result.add(_item);
           }
           return _result;
@@ -434,11 +450,12 @@ public final class MealDao_Impl implements MealDao {
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfDate = CursorUtil.getColumnIndexOrThrow(_cursor, "date");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
+          final int _cursorIndexOfUpdatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "updatedAt");
           final List<Meal> _result = new ArrayList<Meal>(_cursor.getCount());
           while (_cursor.moveToNext()) {
             final Meal _item;
-            final long _tmpId;
-            _tmpId = _cursor.getLong(_cursorIndexOfId);
+            final String _tmpId;
+            _tmpId = _cursor.getString(_cursorIndexOfId);
             final String _tmpUserId;
             _tmpUserId = _cursor.getString(_cursorIndexOfUserId);
             final String _tmpName;
@@ -505,13 +522,16 @@ public final class MealDao_Impl implements MealDao {
             } else {
               _tmp_5 = _cursor.getLong(_cursorIndexOfCreatedAt);
             }
-            final Date _tmp_6 = __converters.fromTimestamp(_tmp_5);
-            if (_tmp_6 == null) {
-              throw new IllegalStateException("Expected NON-NULL 'java.util.Date', but it was NULL.");
+            _tmpCreatedAt = __converters.fromTimestamp(_tmp_5);
+            final Date _tmpUpdatedAt;
+            final Long _tmp_6;
+            if (_cursor.isNull(_cursorIndexOfUpdatedAt)) {
+              _tmp_6 = null;
             } else {
-              _tmpCreatedAt = _tmp_6;
+              _tmp_6 = _cursor.getLong(_cursorIndexOfUpdatedAt);
             }
-            _item = new Meal(_tmpId,_tmpUserId,_tmpName,_tmpType,_tmpCalories,_tmpProtein,_tmpCarbs,_tmpFat,_tmpFiber,_tmpSugar,_tmpNotes,_tmpDate,_tmpCreatedAt);
+            _tmpUpdatedAt = __converters.fromTimestamp(_tmp_6);
+            _item = new Meal(_tmpId,_tmpUserId,_tmpName,_tmpType,_tmpCalories,_tmpProtein,_tmpCarbs,_tmpFat,_tmpFiber,_tmpSugar,_tmpNotes,_tmpDate,_tmpCreatedAt,_tmpUpdatedAt);
             _result.add(_item);
           }
           return _result;
@@ -528,11 +548,11 @@ public final class MealDao_Impl implements MealDao {
   }
 
   @Override
-  public Object getMealById(final long id, final Continuation<? super Meal> $completion) {
+  public Object getMealById(final String id, final Continuation<? super Meal> $completion) {
     final String _sql = "SELECT * FROM meals WHERE id = ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
-    _statement.bindLong(_argIndex, id);
+    _statement.bindString(_argIndex, id);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
     return CoroutinesRoom.execute(__db, false, _cancellationSignal, new Callable<Meal>() {
       @Override
@@ -553,10 +573,11 @@ public final class MealDao_Impl implements MealDao {
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfDate = CursorUtil.getColumnIndexOrThrow(_cursor, "date");
           final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
+          final int _cursorIndexOfUpdatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "updatedAt");
           final Meal _result;
           if (_cursor.moveToFirst()) {
-            final long _tmpId;
-            _tmpId = _cursor.getLong(_cursorIndexOfId);
+            final String _tmpId;
+            _tmpId = _cursor.getString(_cursorIndexOfId);
             final String _tmpUserId;
             _tmpUserId = _cursor.getString(_cursorIndexOfUserId);
             final String _tmpName;
@@ -623,13 +644,16 @@ public final class MealDao_Impl implements MealDao {
             } else {
               _tmp_3 = _cursor.getLong(_cursorIndexOfCreatedAt);
             }
-            final Date _tmp_4 = __converters.fromTimestamp(_tmp_3);
-            if (_tmp_4 == null) {
-              throw new IllegalStateException("Expected NON-NULL 'java.util.Date', but it was NULL.");
+            _tmpCreatedAt = __converters.fromTimestamp(_tmp_3);
+            final Date _tmpUpdatedAt;
+            final Long _tmp_4;
+            if (_cursor.isNull(_cursorIndexOfUpdatedAt)) {
+              _tmp_4 = null;
             } else {
-              _tmpCreatedAt = _tmp_4;
+              _tmp_4 = _cursor.getLong(_cursorIndexOfUpdatedAt);
             }
-            _result = new Meal(_tmpId,_tmpUserId,_tmpName,_tmpType,_tmpCalories,_tmpProtein,_tmpCarbs,_tmpFat,_tmpFiber,_tmpSugar,_tmpNotes,_tmpDate,_tmpCreatedAt);
+            _tmpUpdatedAt = __converters.fromTimestamp(_tmp_4);
+            _result = new Meal(_tmpId,_tmpUserId,_tmpName,_tmpType,_tmpCalories,_tmpProtein,_tmpCarbs,_tmpFat,_tmpFiber,_tmpSugar,_tmpNotes,_tmpDate,_tmpCreatedAt,_tmpUpdatedAt);
           } else {
             _result = null;
           }

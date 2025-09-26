@@ -1,10 +1,14 @@
 package com.vitatrack.app.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.ServerTimestamp
 import java.util.Date
 
+@Entity(tableName = "exercises")
 data class Exercise(
+    @PrimaryKey
     @DocumentId
     val id: String = "",
     val userId: String = "",

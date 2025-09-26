@@ -40,7 +40,12 @@ class WaterViewModel(
                         _waterIntakes.value = intakes
                         
                         // Calculate daily total
-                        val total = intakes.sumOf { it.amount }
+                        // amountMl is Int in our model. If any legacy String sneaks in, convert safely.
+                        val total = intakes.sumOf { intake ->
+                            // Primary path (Int)
+                            val vInt: Int? = (intake.amountMl as? Int)
+                            vInt ?: intake.amountMl.toString().toIntOrNull() ?: 0
+                        }
                         _dailyTotal.value = total
                     }
 

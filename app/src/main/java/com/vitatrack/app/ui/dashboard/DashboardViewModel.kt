@@ -8,9 +8,9 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class DashboardViewModel(
-    private val userRepository: UserRepository,
-    private val mealDao: MealDao,
-    private val waterIntakeDao: WaterIntakeDao
+    private val userRepository: UserRepository? = null,
+    private val mealDao: MealDao? = null,
+    private val waterIntakeDao: WaterIntakeDao? = null
 ) : ViewModel() {
 
     private val _dailyStats = MutableLiveData<DailyStats>()
@@ -36,18 +36,26 @@ class DashboardViewModel(
                     set(Calendar.MILLISECOND, 999)
                 }
 
-                // Load daily statistics
-                val totalCaloriesFromMeals = mealDao.getTotalCaloriesByDateRange(
-                    userId, startOfDay.time, endOfDay.time
-                ) ?: 0
+                // Load daily statistics with null checks
+                val totalCaloriesFromMeals = try {
+                    mealDao?.getTotalCaloriesByDateRange(
+                        userId, startOfDay.time, endOfDay.time
+                    ) ?: 0
+                } catch (e: Exception) {
+                    0
+                }
 
                 // Placeholder values for exercise data
                 val totalCaloriesBurned = 0
                 val totalExerciseDuration = 0
 
-                val totalWaterIntake = waterIntakeDao.getTotalWaterIntakeByDateRange(
-                    userId, startOfDay.time, endOfDay.time
-                ) ?: 0
+                val totalWaterIntake = try {
+                    waterIntakeDao?.getTotalWaterIntakeByDateRange(
+                        userId, startOfDay.time, endOfDay.time
+                    ) ?: 0
+                } catch (e: Exception) {
+                    0
+                }
 
                 // For now, we'll use a placeholder for steps
                 // In a real app, you'd integrate with step counter APIs

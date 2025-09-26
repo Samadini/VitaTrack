@@ -9,7 +9,7 @@ import com.vitatrack.app.data.model.WaterIntake
 import kotlinx.coroutines.launch
 import java.util.*
 
-class WaterTrackingViewModel(private val waterIntakeDao: WaterIntakeDao) : ViewModel() {
+class WaterTrackingViewModel(private val waterIntakeDao: WaterIntakeDao? = null) : ViewModel() {
 
     private val _dailyWaterIntake = MutableLiveData<Int>()
     val dailyWaterIntake: LiveData<Int> = _dailyWaterIntake
@@ -36,7 +36,11 @@ class WaterTrackingViewModel(private val waterIntakeDao: WaterIntakeDao) : ViewM
             today.add(Calendar.DAY_OF_MONTH, 1)
             val endOfDay = today.time
 
-            val totalIntake = waterIntakeDao.getTotalWaterIntakeByDateRange(userId, startOfDay, endOfDay) ?: 0
+            val totalIntake = try {
+                waterIntakeDao?.getTotalWaterIntakeByDateRange(userId, startOfDay, endOfDay) ?: 0
+            } catch (e: Exception) {
+                0
+            }
             _dailyWaterIntake.postValue(totalIntake)
         }
     }
@@ -45,11 +49,15 @@ class WaterTrackingViewModel(private val waterIntakeDao: WaterIntakeDao) : ViewM
         viewModelScope.launch {
             val waterIntake = WaterIntake(
                 userId = userId,
-                amount = amount,
+                amountMl = amount,
                 date = Date()
             )
-            waterIntakeDao.insertWaterIntake(waterIntake)
-            loadTodayWaterIntake(userId) // Refresh data
+            try {
+                waterIntakeDao?.insertWaterIntake(waterIntake)
+                loadTodayWaterIntake(userId) // Refresh data
+            } catch (e: Exception) {
+                // Handle error silently for now
+            }
         }
     }
 

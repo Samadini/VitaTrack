@@ -15,7 +15,7 @@ class MealRepository(private val mealDao: MealDao) {
         return mealDao.getMealsByDateRange(userId, startDate, endDate)
     }
     
-    suspend fun getMealById(id: Long): Meal? {
+    suspend fun getMealById(id: String): Meal? {
         return mealDao.getMealById(id)
     }
     
@@ -35,8 +35,8 @@ class MealRepository(private val mealDao: MealDao) {
         return mealDao.getTotalFatByDateRange(userId, startDate, endDate) ?: 0f
     }
     
-    suspend fun insertMeal(meal: Meal): Long {
-        return mealDao.insertMeal(meal)
+    suspend fun insertMeal(meal: Meal) {
+        mealDao.insertMeal(meal)
     }
     
     suspend fun updateMeal(meal: Meal) {
@@ -47,7 +47,7 @@ class MealRepository(private val mealDao: MealDao) {
         mealDao.deleteMeal(meal)
     }
     
-    suspend fun deleteMealById(id: Long) {
+    suspend fun deleteMealById(id: String) {
         mealDao.deleteMealById(id)
     }
 }

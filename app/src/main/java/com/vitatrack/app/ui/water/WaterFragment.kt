@@ -104,7 +104,7 @@ class WaterFragment : Fragment() {
         if (currentUser != null) {
             val waterIntake = WaterIntake(
                 userId = currentUser.uid,
-                amount = amount,
+                amountMl = amount,
                 date = Date()
             )
             viewModel.addWaterIntake(waterIntake)
