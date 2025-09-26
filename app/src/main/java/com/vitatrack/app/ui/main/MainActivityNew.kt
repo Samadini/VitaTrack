@@ -47,17 +47,43 @@ class MainActivityNew : AppCompatActivity() {
     }
     
     private fun setupNavigation() {
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        bottomNav.setupWithNavController(navController)
+        try {
+            val navHostFragment = supportFragmentManager
+                .findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
+            
+            if (navHostFragment == null) {
+                Log.e(TAG, "NavHostFragment not found")
+                redirectToAuth()
+                return
+            }
+            
+            val navController = navHostFragment.navController
+            val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+            
+            if (bottomNav == null) {
+                Log.e(TAG, "BottomNavigationView not found")
+                redirectToAuth()
+                return
+            }
+            
+            bottomNav.setupWithNavController(navController)
+            Log.d(TAG, "Navigation setup completed successfully")
+            
+        } catch (e: Exception) {
+            Log.e(TAG, "Error setting up navigation", e)
+            redirectToAuth()
+        }
     }
     
     private fun setupToolbar() {
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.title = "VitaTrack"
+        try {
+            setSupportActionBar(binding.toolbar)
+            supportActionBar?.title = "VitaTrack"
+            Log.d(TAG, "Toolbar setup completed successfully")
+        } catch (e: Exception) {
+            Log.e(TAG, "Error setting up toolbar", e)
+            // Toolbar setup failure is not critical, continue without crashing
+        }
     }
     
     private fun redirectToAuth() {

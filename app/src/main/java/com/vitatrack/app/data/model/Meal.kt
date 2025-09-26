@@ -2,16 +2,19 @@ package com.vitatrack.app.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.firebase.firestore.DocumentId
+import com.google.firebase.firestore.ServerTimestamp
 import java.util.Date
 
 @Entity(tableName = "meals")
 data class Meal(
     @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
-    val userId: String,
-    val name: String,
-    val type: MealType,
-    val calories: Int,
+    @DocumentId
+    val id: String = "",
+    val userId: String = "",
+    val name: String = "",
+    val type: MealType = MealType.OTHER,
+    val calories: Int = 0,
     val protein: Float? = null, // in grams
     val carbs: Float? = null, // in grams
     val fat: Float? = null, // in grams
@@ -19,7 +22,10 @@ data class Meal(
     val sugar: Float? = null, // in grams
     val notes: String? = null,
     val date: Date = Date(),
-    val createdAt: Date = Date()
+    @ServerTimestamp
+    val createdAt: Date? = null,
+    @ServerTimestamp
+    val updatedAt: Date? = null
 )
 
 enum class MealType {

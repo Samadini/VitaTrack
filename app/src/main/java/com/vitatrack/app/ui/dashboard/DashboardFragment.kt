@@ -101,35 +101,65 @@ class DashboardFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        recentActivityAdapter = RecentActivityAdapter { activity ->
-            // Handle activity item click
-            // TODO: Navigate to activity details
-        }
-        
-        binding.rvRecentActivity.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = recentActivityAdapter
+        try {
+            recentActivityAdapter = RecentActivityAdapter { activity ->
+                // Handle activity item click
+                // TODO: Navigate to activity details
+            }
+            
+            binding.rvRecentActivity.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = recentActivityAdapter
+            }
+            Log.d("DashboardFragment", "RecyclerView setup completed successfully")
+        } catch (e: Exception) {
+            Log.e("DashboardFragment", "Error setting up RecyclerView", e)
+            // Continue without RecyclerView if it fails
         }
     }
 
     private fun observeViewModels() {
-        // Observe daily stats
-        viewModel.dailyStats.observe(viewLifecycleOwner) { stats ->
-            updateProgressCards(stats)
-        }
-        
-        // Observe recent activities
-        viewModel.recentActivities.observe(viewLifecycleOwner) { activities ->
-            recentActivityAdapter.submitList(activities)
-        }
-        
-        // Observe water tracking
-        waterViewModel.dailyWaterIntake.observe(viewLifecycleOwner) { intake ->
-            updateWaterProgress(intake)
-        }
-        
-        waterViewModel.dailyGoal.observe(viewLifecycleOwner) { goal ->
-            updateWaterGoal(goal)
+        try {
+            // Observe daily stats
+            viewModel.dailyStats.observe(viewLifecycleOwner) { stats ->
+                try {
+                    updateProgressCards(stats)
+                } catch (e: Exception) {
+                    Log.e("DashboardFragment", "Error updating progress cards", e)
+                }
+            }
+            
+            // Observe recent activities
+            viewModel.recentActivities.observe(viewLifecycleOwner) { activities ->
+                try {
+                    if (::recentActivityAdapter.isInitialized) {
+                        recentActivityAdapter.submitList(activities)
+                    }
+                } catch (e: Exception) {
+                    Log.e("DashboardFragment", "Error updating recent activities", e)
+                }
+            }
+            
+            // Observe water tracking
+            waterViewModel.dailyWaterIntake.observe(viewLifecycleOwner) { intake ->
+                try {
+                    updateWaterProgress(intake)
+                } catch (e: Exception) {
+                    Log.e("DashboardFragment", "Error updating water progress", e)
+                }
+            }
+            
+            waterViewModel.dailyGoal.observe(viewLifecycleOwner) { goal ->
+                try {
+                    updateWaterGoal(goal)
+                } catch (e: Exception) {
+                    Log.e("DashboardFragment", "Error updating water goal", e)
+                }
+            }
+            
+            Log.d("DashboardFragment", "ViewModels observers setup completed successfully")
+        } catch (e: Exception) {
+            Log.e("DashboardFragment", "Error setting up ViewModel observers", e)
         }
     }
     
@@ -219,22 +249,29 @@ class DashboardFragment : Fragment() {
     }
 
     private fun updateProgressCards(stats: DailyStats) {
-        // Update steps
-        binding.tvStepsCount.text = stats.steps.toString()
-        binding.progressSteps.progress = stats.steps
-        
-        // Update calories
-        binding.tvCaloriesCount.text = stats.calories.toString()
-        binding.progressCalories.progress = stats.calories
-        
-        // Update water (convert ml to liters)
-        val waterInLiters = stats.waterIntake / 1000f
-        binding.tvWaterCount.text = String.format("%.1fL", waterInLiters)
-        binding.progressWater.progress = stats.waterIntake
-        
-        // Update exercise duration
-        binding.tvExerciseCount.text = "${stats.exerciseDuration} min"
-        binding.progressExercise.progress = stats.exerciseDuration
+        try {
+            // Update steps
+            binding.tvStepsCount.text = stats.steps.toString()
+            binding.progressSteps.progress = stats.steps
+            
+            // Update calories
+            binding.tvCaloriesCount.text = stats.calories.toString()
+            binding.progressCalories.progress = stats.calories
+            
+            // Update water (convert ml to liters)
+            val waterInLiters = stats.waterIntake / 1000f
+            binding.tvWaterCount.text = String.format("%.1fL", waterInLiters)
+            binding.progressWater.progress = stats.waterIntake
+            
+            // Update exercise duration
+            binding.tvExerciseCount.text = "${stats.exerciseDuration} min"
+            binding.progressExercise.progress = stats.exerciseDuration
+            
+            Log.d("DashboardFragment", "Progress cards updated successfully")
+        } catch (e: Exception) {
+            Log.e("DashboardFragment", "Error updating progress cards", e)
+            // Show fallback data or continue without updating
+        }
     }
 
     override fun onDestroyView() {

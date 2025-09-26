@@ -11,21 +11,18 @@ import androidx.room.EntityInsertionAdapter;
 import androidx.room.RoomDatabase;
 import androidx.room.RoomSQLiteQuery;
 import androidx.room.SharedSQLiteStatement;
-import androidx.room.util.CursorUtil;
 import androidx.room.util.DBUtil;
 import androidx.sqlite.db.SupportSQLiteStatement;
 import com.vitatrack.app.data.database.Converters;
 import com.vitatrack.app.data.model.WaterIntake;
 import java.lang.Class;
 import java.lang.Exception;
-import java.lang.IllegalStateException;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -55,26 +52,37 @@ public final class WaterIntakeDao_Impl implements WaterIntakeDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `water_intake` (`id`,`userId`,`amount`,`date`,`createdAt`) VALUES (nullif(?, 0),?,?,?,?)";
+        return "INSERT OR ABORT INTO `water_intake` (`id`,`userId`,`amountMl`,`notes`,`date`,`createdAt`,`updatedAt`) VALUES (nullif(?, 0),?,?,?,?,?,?)";
       }
 
       @Override
       protected void bind(@NonNull final SupportSQLiteStatement statement,
           @NonNull final WaterIntake entity) {
-        statement.bindLong(1, entity.getId());
+        statement.bindString(1, entity.getId());
         statement.bindString(2, entity.getUserId());
-        statement.bindLong(3, entity.getAmount());
-        final Long _tmp = __converters.dateToTimestamp(entity.getDate());
-        if (_tmp == null) {
+        statement.bindLong(3, entity.getAmountMl());
+        if (entity.getNotes() == null) {
           statement.bindNull(4);
         } else {
-          statement.bindLong(4, _tmp);
+          statement.bindString(4, entity.getNotes());
+        }
+        final Long _tmp = __converters.dateToTimestamp(entity.getDate());
+        if (_tmp == null) {
+          statement.bindNull(5);
+        } else {
+          statement.bindLong(5, _tmp);
         }
         final Long _tmp_1 = __converters.dateToTimestamp(entity.getCreatedAt());
         if (_tmp_1 == null) {
-          statement.bindNull(5);
+          statement.bindNull(6);
         } else {
-          statement.bindLong(5, _tmp_1);
+          statement.bindLong(6, _tmp_1);
+        }
+        final Long _tmp_2 = __converters.dateToTimestamp(entity.getUpdatedAt());
+        if (_tmp_2 == null) {
+          statement.bindNull(7);
+        } else {
+          statement.bindLong(7, _tmp_2);
         }
       }
     };
@@ -88,35 +96,46 @@ public final class WaterIntakeDao_Impl implements WaterIntakeDao {
       @Override
       protected void bind(@NonNull final SupportSQLiteStatement statement,
           @NonNull final WaterIntake entity) {
-        statement.bindLong(1, entity.getId());
+        statement.bindString(1, entity.getId());
       }
     };
     this.__updateAdapterOfWaterIntake = new EntityDeletionOrUpdateAdapter<WaterIntake>(__db) {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `water_intake` SET `id` = ?,`userId` = ?,`amount` = ?,`date` = ?,`createdAt` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `water_intake` SET `id` = ?,`userId` = ?,`amountMl` = ?,`notes` = ?,`date` = ?,`createdAt` = ?,`updatedAt` = ? WHERE `id` = ?";
       }
 
       @Override
       protected void bind(@NonNull final SupportSQLiteStatement statement,
           @NonNull final WaterIntake entity) {
-        statement.bindLong(1, entity.getId());
+        statement.bindString(1, entity.getId());
         statement.bindString(2, entity.getUserId());
-        statement.bindLong(3, entity.getAmount());
-        final Long _tmp = __converters.dateToTimestamp(entity.getDate());
-        if (_tmp == null) {
+        statement.bindLong(3, entity.getAmountMl());
+        if (entity.getNotes() == null) {
           statement.bindNull(4);
         } else {
-          statement.bindLong(4, _tmp);
+          statement.bindString(4, entity.getNotes());
+        }
+        final Long _tmp = __converters.dateToTimestamp(entity.getDate());
+        if (_tmp == null) {
+          statement.bindNull(5);
+        } else {
+          statement.bindLong(5, _tmp);
         }
         final Long _tmp_1 = __converters.dateToTimestamp(entity.getCreatedAt());
         if (_tmp_1 == null) {
-          statement.bindNull(5);
+          statement.bindNull(6);
         } else {
-          statement.bindLong(5, _tmp_1);
+          statement.bindLong(6, _tmp_1);
         }
-        statement.bindLong(6, entity.getId());
+        final Long _tmp_2 = __converters.dateToTimestamp(entity.getUpdatedAt());
+        if (_tmp_2 == null) {
+          statement.bindNull(7);
+        } else {
+          statement.bindLong(7, _tmp_2);
+        }
+        statement.bindString(8, entity.getId());
       }
     };
     this.__preparedStmtOfDeleteWaterIntakeById = new SharedSQLiteStatement(__db) {
@@ -223,49 +242,6 @@ public final class WaterIntakeDao_Impl implements WaterIntakeDao {
       public List<WaterIntake> call() throws Exception {
         final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
         try {
-          final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
-          final int _cursorIndexOfUserId = CursorUtil.getColumnIndexOrThrow(_cursor, "userId");
-          final int _cursorIndexOfAmount = CursorUtil.getColumnIndexOrThrow(_cursor, "amount");
-          final int _cursorIndexOfDate = CursorUtil.getColumnIndexOrThrow(_cursor, "date");
-          final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
-          final List<WaterIntake> _result = new ArrayList<WaterIntake>(_cursor.getCount());
-          while (_cursor.moveToNext()) {
-            final WaterIntake _item;
-            final long _tmpId;
-            _tmpId = _cursor.getLong(_cursorIndexOfId);
-            final String _tmpUserId;
-            _tmpUserId = _cursor.getString(_cursorIndexOfUserId);
-            final int _tmpAmount;
-            _tmpAmount = _cursor.getInt(_cursorIndexOfAmount);
-            final Date _tmpDate;
-            final Long _tmp;
-            if (_cursor.isNull(_cursorIndexOfDate)) {
-              _tmp = null;
-            } else {
-              _tmp = _cursor.getLong(_cursorIndexOfDate);
-            }
-            final Date _tmp_1 = __converters.fromTimestamp(_tmp);
-            if (_tmp_1 == null) {
-              throw new IllegalStateException("Expected NON-NULL 'java.util.Date', but it was NULL.");
-            } else {
-              _tmpDate = _tmp_1;
-            }
-            final Date _tmpCreatedAt;
-            final Long _tmp_2;
-            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
-              _tmp_2 = null;
-            } else {
-              _tmp_2 = _cursor.getLong(_cursorIndexOfCreatedAt);
-            }
-            final Date _tmp_3 = __converters.fromTimestamp(_tmp_2);
-            if (_tmp_3 == null) {
-              throw new IllegalStateException("Expected NON-NULL 'java.util.Date', but it was NULL.");
-            } else {
-              _tmpCreatedAt = _tmp_3;
-            }
-            _item = new WaterIntake(_tmpId,_tmpUserId,_tmpAmount,_tmpDate,_tmpCreatedAt);
-            _result.add(_item);
-          }
           return _result;
         } finally {
           _cursor.close();
@@ -306,49 +282,6 @@ public final class WaterIntakeDao_Impl implements WaterIntakeDao {
       public List<WaterIntake> call() throws Exception {
         final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
         try {
-          final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
-          final int _cursorIndexOfUserId = CursorUtil.getColumnIndexOrThrow(_cursor, "userId");
-          final int _cursorIndexOfAmount = CursorUtil.getColumnIndexOrThrow(_cursor, "amount");
-          final int _cursorIndexOfDate = CursorUtil.getColumnIndexOrThrow(_cursor, "date");
-          final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
-          final List<WaterIntake> _result = new ArrayList<WaterIntake>(_cursor.getCount());
-          while (_cursor.moveToNext()) {
-            final WaterIntake _item;
-            final long _tmpId;
-            _tmpId = _cursor.getLong(_cursorIndexOfId);
-            final String _tmpUserId;
-            _tmpUserId = _cursor.getString(_cursorIndexOfUserId);
-            final int _tmpAmount;
-            _tmpAmount = _cursor.getInt(_cursorIndexOfAmount);
-            final Date _tmpDate;
-            final Long _tmp_2;
-            if (_cursor.isNull(_cursorIndexOfDate)) {
-              _tmp_2 = null;
-            } else {
-              _tmp_2 = _cursor.getLong(_cursorIndexOfDate);
-            }
-            final Date _tmp_3 = __converters.fromTimestamp(_tmp_2);
-            if (_tmp_3 == null) {
-              throw new IllegalStateException("Expected NON-NULL 'java.util.Date', but it was NULL.");
-            } else {
-              _tmpDate = _tmp_3;
-            }
-            final Date _tmpCreatedAt;
-            final Long _tmp_4;
-            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
-              _tmp_4 = null;
-            } else {
-              _tmp_4 = _cursor.getLong(_cursorIndexOfCreatedAt);
-            }
-            final Date _tmp_5 = __converters.fromTimestamp(_tmp_4);
-            if (_tmp_5 == null) {
-              throw new IllegalStateException("Expected NON-NULL 'java.util.Date', but it was NULL.");
-            } else {
-              _tmpCreatedAt = _tmp_5;
-            }
-            _item = new WaterIntake(_tmpId,_tmpUserId,_tmpAmount,_tmpDate,_tmpCreatedAt);
-            _result.add(_item);
-          }
           return _result;
         } finally {
           _cursor.close();
@@ -376,49 +309,6 @@ public final class WaterIntakeDao_Impl implements WaterIntakeDao {
       public WaterIntake call() throws Exception {
         final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
         try {
-          final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
-          final int _cursorIndexOfUserId = CursorUtil.getColumnIndexOrThrow(_cursor, "userId");
-          final int _cursorIndexOfAmount = CursorUtil.getColumnIndexOrThrow(_cursor, "amount");
-          final int _cursorIndexOfDate = CursorUtil.getColumnIndexOrThrow(_cursor, "date");
-          final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
-          final WaterIntake _result;
-          if (_cursor.moveToFirst()) {
-            final long _tmpId;
-            _tmpId = _cursor.getLong(_cursorIndexOfId);
-            final String _tmpUserId;
-            _tmpUserId = _cursor.getString(_cursorIndexOfUserId);
-            final int _tmpAmount;
-            _tmpAmount = _cursor.getInt(_cursorIndexOfAmount);
-            final Date _tmpDate;
-            final Long _tmp;
-            if (_cursor.isNull(_cursorIndexOfDate)) {
-              _tmp = null;
-            } else {
-              _tmp = _cursor.getLong(_cursorIndexOfDate);
-            }
-            final Date _tmp_1 = __converters.fromTimestamp(_tmp);
-            if (_tmp_1 == null) {
-              throw new IllegalStateException("Expected NON-NULL 'java.util.Date', but it was NULL.");
-            } else {
-              _tmpDate = _tmp_1;
-            }
-            final Date _tmpCreatedAt;
-            final Long _tmp_2;
-            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
-              _tmp_2 = null;
-            } else {
-              _tmp_2 = _cursor.getLong(_cursorIndexOfCreatedAt);
-            }
-            final Date _tmp_3 = __converters.fromTimestamp(_tmp_2);
-            if (_tmp_3 == null) {
-              throw new IllegalStateException("Expected NON-NULL 'java.util.Date', but it was NULL.");
-            } else {
-              _tmpCreatedAt = _tmp_3;
-            }
-            _result = new WaterIntake(_tmpId,_tmpUserId,_tmpAmount,_tmpDate,_tmpCreatedAt);
-          } else {
-            _result = null;
-          }
           return _result;
         } finally {
           _cursor.close();
@@ -456,18 +346,6 @@ public final class WaterIntakeDao_Impl implements WaterIntakeDao {
       public Integer call() throws Exception {
         final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
         try {
-          final Integer _result;
-          if (_cursor.moveToFirst()) {
-            final Integer _tmp_2;
-            if (_cursor.isNull(0)) {
-              _tmp_2 = null;
-            } else {
-              _tmp_2 = _cursor.getInt(0);
-            }
-            _result = _tmp_2;
-          } else {
-            _result = null;
-          }
           return _result;
         } finally {
           _cursor.close();
