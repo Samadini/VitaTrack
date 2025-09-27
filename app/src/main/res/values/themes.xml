@@ -16,12 +16,11 @@
         <item name="android:windowLightStatusBar">false</item>
     </style>
 
-    <!-- Splash Screen Theme -->
-    <style name="Theme.VitaTrack.Splash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/primary_blue</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_vita_logo</item>
-        <item name="windowSplashScreenAnimationDuration">1000</item>
-        <item name="postSplashScreenTheme">@style/Theme.VitaTrack</item>
+    <!-- Splash Screen Theme - Custom Implementation -->
+    <style name="Theme.VitaTrack.Splash" parent="Theme.VitaTrack">
+        <item name="android:windowBackground">@color/primary_blue</item>
+        <item name="android:statusBarColor">@color/primary_blue</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <!-- Button Styles -->

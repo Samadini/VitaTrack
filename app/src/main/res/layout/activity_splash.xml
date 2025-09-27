@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="#1E63F6"
     tools:context=".ui.splash.SplashActivity">
 
     <!-- Logo Container -->
@@ -21,20 +21,20 @@
 
         <!-- Logo Circle Background -->
         <androidx.cardview.widget.CardView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="40dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="48dp"
             app:cardBackgroundColor="@android:color/white"
-            app:cardCornerRadius="50dp"
+            app:cardCornerRadius="60dp"
             app:cardElevation="0dp">
 
             <ImageView
                 android:id="@+id/ivLogo"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_water"
-                app:tint="#4A90E2" />
+                android:src="@drawable/ic_water_drop"
+                app:tint="#1E63F6" />
 
         </androidx.cardview.widget.CardView>
 
@@ -47,8 +47,8 @@
             android:fontFamily="sans-serif-medium"
             android:text="VitaTrack"
             android:textColor="@android:color/white"
-            android:textSize="36sp"
-            android:textStyle="normal" />
+            android:textSize="32sp"
+            android:textStyle="bold" />
 
         <!-- Tagline -->
         <TextView
@@ -66,23 +66,24 @@
     <!-- Loading Indicator -->
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="80dp"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="120dp"
         android:indeterminateTint="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tvCopyright"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoContainer" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- Copyright -->
     <TextView
         android:id="@+id/tvCopyright"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:alpha="0.7"
+        android:layout_marginBottom="48dp"
+        android:alpha="0.8"
         android:fontFamily="sans-serif"
-        android:text="© 2023 VitaTrack"
+        android:text="© 2025 VitaTrack"
         android:textColor="@android:color/white"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"

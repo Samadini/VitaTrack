@@ -5,12 +5,13 @@ import androidx.room.PrimaryKey
 import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.ServerTimestamp
 import java.util.Date
+import java.util.UUID
 
 @Entity(tableName = "meals")
 data class Meal(
     @PrimaryKey
     @DocumentId
-    val id: String = "",
+    val id: String = UUID.randomUUID().toString(),
     val userId: String = "",
     val name: String = "",
     val type: MealType = MealType.OTHER,

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.vitatrack.app.ui.base.BaseFragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +23,7 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : BaseFragment() {
 
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding ?: throw IllegalStateException("Fragment binding is null")
@@ -256,19 +257,31 @@ class DashboardFragment : Fragment() {
     private fun setupClickListeners() {
         try {
             _binding?.btnAddExercise?.setOnClickListener {
-                // Exercise functionality temporarily disabled
-                Toast.makeText(context, "Exercise tracking coming soon!", Toast.LENGTH_SHORT).show()
+                // Navigate to Exercise Fragment
+                try {
+                    findNavController().navigate(R.id.action_dashboard_to_exercise)
+                    Log.d("DashboardFragment", "Navigating to Exercise Fragment")
+                } catch (e: Exception) {
+                    Log.e("DashboardFragment", "Error navigating to Exercise Fragment", e)
+                    Toast.makeText(context, "Error opening exercise tracking", Toast.LENGTH_SHORT).show()
+                }
             }
             
             _binding?.btnAddMeal?.setOnClickListener {
-                // Meal functionality coming soon
-                Toast.makeText(context, "Meal tracking coming soon!", Toast.LENGTH_SHORT).show()
+                // Navigate to Meal Fragment
+                try {
+                    findNavController().navigate(R.id.action_dashboard_to_meal)
+                    Log.d("DashboardFragment", "Navigating to Meal Fragment")
+                } catch (e: Exception) {
+                    Log.e("DashboardFragment", "Error navigating to Meal Fragment", e)
+                    Toast.makeText(context, "Error opening meal tracking", Toast.LENGTH_SHORT).show()
+                }
             }
             
             _binding?.btnAddWater?.setOnClickListener {
                 // Navigate to Log Water Fragment
                 try {
-                    findNavController().navigate(R.id.action_dashboardFragment_to_logWaterFragment)
+                    findNavController().navigate(R.id.action_dashboard_to_logwater)
                     Log.d("DashboardFragment", "Navigating to Log Water Fragment")
                 } catch (e: Exception) {
                     Log.e("DashboardFragment", "Error navigating to Log Water Fragment", e)

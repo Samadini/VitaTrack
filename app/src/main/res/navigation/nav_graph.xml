@@ -3,16 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dashboardFragment">
+    app:startDestination="@id/nav_dashboard">
 
+    <!-- Main Navigation Destinations -->
     <fragment
-        android:id="@+id/dashboardFragment"
+        android:id="@+id/nav_dashboard"
         android:name="com.vitatrack.app.ui.dashboard.DashboardFragment"
         android:label="Home"
         tools:layout="@layout/fragment_dashboard">
         
+        <!-- Actions from Dashboard to other fragments -->
         <action
-            android:id="@+id/action_dashboardFragment_to_logWaterFragment"
+            android:id="@+id/action_dashboard_to_exercise"
+            app:destination="@id/nav_exercise"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+            
+        <action
+            android:id="@+id/action_dashboard_to_meal"
+            app:destination="@id/nav_meals"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+            
+        <action
+            android:id="@+id/action_dashboard_to_logwater"
             app:destination="@id/logWaterFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
@@ -21,12 +39,7 @@
             
     </fragment>
 
-    <fragment
-        android:id="@+id/insightsFragment"
-        android:name="com.vitatrack.app.ui.insights.InsightsFragment"
-        android:label="Insights"
-        tools:layout="@layout/fragment_insights" />
-
+    <!-- Bottom Navigation Destinations -->
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.vitatrack.app.ui.history.HistoryFragment"
@@ -34,7 +47,13 @@
         tools:layout="@layout/fragment_history" />
 
     <fragment
-        android:id="@+id/profileFragment"
+        android:id="@+id/insightsFragment"
+        android:name="com.vitatrack.app.ui.insights.InsightsFragment"
+        android:label="Insights"
+        tools:layout="@layout/fragment_insights" />
+
+    <fragment
+        android:id="@+id/nav_profile"
         android:name="com.vitatrack.app.ui.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
@@ -45,11 +64,30 @@
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
 
-    <!-- Log Water Fragment -->
+    <!-- Secondary Fragments (accessed from Dashboard) -->
+    <fragment
+        android:id="@+id/nav_exercise"
+        android:name="com.vitatrack.app.ui.exercise.ExerciseFragment"
+        android:label="Exercise"
+        tools:layout="@layout/fragment_exercise" />
+
+    <fragment
+        android:id="@+id/nav_meals"
+        android:name="com.vitatrack.app.ui.meal.MealFragment"
+        android:label="Meals"
+        tools:layout="@layout/fragment_meal" />
+
     <fragment
         android:id="@+id/logWaterFragment"
         android:name="com.vitatrack.app.ui.water.LogWaterFragment"
         android:label="Log Water"
         tools:layout="@layout/fragment_log_water" />
+
+    <!-- Keep water fragment for compatibility -->
+    <fragment
+        android:id="@+id/nav_water"
+        android:name="com.vitatrack.app.ui.water.WaterFragment"
+        android:label="Water"
+        tools:layout="@layout/fragment_water" />
 
 </navigation>

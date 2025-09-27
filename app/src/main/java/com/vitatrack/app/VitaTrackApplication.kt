@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.vitatrack.app.data.database.VitaTrackDatabase
 import com.vitatrack.app.data.repository.UserRepository
+import com.vitatrack.app.data.repository.MealRepository
 import com.vitatrack.app.utils.NotificationHelper
 
 class VitaTrackApplication : Application() {
@@ -22,8 +23,9 @@ class VitaTrackApplication : Application() {
     // Database instance
     val database by lazy { VitaTrackDatabase.getDatabase(this) }
     
-    // Repository instance
+    // Repository instances
     val userRepository by lazy { UserRepository(database.userDao()) }
+    val mealRepository by lazy { MealRepository(database.mealDao(), database.foodItemDao()) }
 
     override fun onCreate() {
         super.onCreate()

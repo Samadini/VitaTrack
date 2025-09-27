@@ -67,6 +67,12 @@
     <!-- Shadow -->
     <color name="shadow">#1A000000</color>
 
+    <!-- Border Colors -->
+    <color name="border_light">#E0E0E0</color>
+
+    <!-- Error Colors -->
+    <color name="error_red">#FF3B30</color>
+
     <!-- Launcher icon background color -->
     <color name="ic_launcher_background">#FFFFFF</color>
 </resources>

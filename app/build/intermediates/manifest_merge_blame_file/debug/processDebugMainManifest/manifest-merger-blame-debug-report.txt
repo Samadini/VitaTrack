@@ -74,8 +74,8 @@
 41        android:supportsRtl="true"
 41-->C:\Users\Samadini Pasanya\Documents\GitHub\VitaTrack\app\src\main\AndroidManifest.xml:20:9-35
 42        android:testOnly="true"
-43        android:theme="@style/Theme.VitaTrack.Splash"
-43-->C:\Users\Samadini Pasanya\Documents\GitHub\VitaTrack\app\src\main\AndroidManifest.xml:21:9-54
+43        android:theme="@style/Theme.VitaTrack"
+43-->C:\Users\Samadini Pasanya\Documents\GitHub\VitaTrack\app\src\main\AndroidManifest.xml:21:9-47
 44        android:usesCleartextTraffic="false" >
 44-->C:\Users\Samadini Pasanya\Documents\GitHub\VitaTrack\app\src\main\AndroidManifest.xml:23:9-45
 45

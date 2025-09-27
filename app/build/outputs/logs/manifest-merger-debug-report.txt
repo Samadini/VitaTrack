@@ -295,7 +295,7 @@ MERGED from [de.hdodenhof:circleimageview:3.1.0] C:\Users\Samadini Pasanya\.grad
 	android:allowBackup
 		ADDED from C:\Users\Samadini Pasanya\Documents\GitHub\VitaTrack\app\src\main\AndroidManifest.xml:14:9-35
 	android:theme
-		ADDED from C:\Users\Samadini Pasanya\Documents\GitHub\VitaTrack\app\src\main\AndroidManifest.xml:21:9-54
+		ADDED from C:\Users\Samadini Pasanya\Documents\GitHub\VitaTrack\app\src\main\AndroidManifest.xml:21:9-47
 	android:dataExtractionRules
 		ADDED from C:\Users\Samadini Pasanya\Documents\GitHub\VitaTrack\app\src\main\AndroidManifest.xml:15:9-65
 	android:usesCleartextTraffic

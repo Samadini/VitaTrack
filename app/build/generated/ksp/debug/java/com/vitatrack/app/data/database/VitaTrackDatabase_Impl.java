@@ -11,6 +11,8 @@ import androidx.room.util.DBUtil;
 import androidx.room.util.TableInfo;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
+import com.vitatrack.app.data.dao.FoodItemDao;
+import com.vitatrack.app.data.dao.FoodItemDao_Impl;
 import com.vitatrack.app.data.dao.MealDao;
 import com.vitatrack.app.data.dao.MealDao_Impl;
 import com.vitatrack.app.data.dao.UserDao;
@@ -36,25 +38,29 @@ public final class VitaTrackDatabase_Impl extends VitaTrackDatabase {
 
   private volatile MealDao _mealDao;
 
+  private volatile FoodItemDao _foodItemDao;
+
   private volatile WaterIntakeDao _waterIntakeDao;
 
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(4) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(5) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS `users` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `email` TEXT NOT NULL, `age` INTEGER, `height` REAL, `weight` REAL, `dailyWaterGoal` INTEGER NOT NULL, `dailyCalorieGoal` INTEGER NOT NULL, `dailyStepsGoal` INTEGER NOT NULL, `profileImageUrl` TEXT, `createdAt` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `meals` (`id` TEXT NOT NULL, `userId` TEXT NOT NULL, `name` TEXT NOT NULL, `type` TEXT NOT NULL, `calories` INTEGER NOT NULL, `protein` REAL, `carbs` REAL, `fat` REAL, `fiber` REAL, `sugar` REAL, `notes` TEXT, `date` INTEGER NOT NULL, `createdAt` INTEGER, `updatedAt` INTEGER, PRIMARY KEY(`id`))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `food_items` (`id` TEXT NOT NULL, `mealId` TEXT NOT NULL, `name` TEXT NOT NULL, `calories` INTEGER NOT NULL, `protein` REAL NOT NULL, `carbs` REAL NOT NULL, `fat` REAL NOT NULL, `quantity` REAL NOT NULL, `unit` TEXT NOT NULL, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `water_intake` (`id` TEXT NOT NULL, `userId` TEXT NOT NULL, `amountMl` INTEGER NOT NULL, `notes` TEXT, `date` INTEGER NOT NULL, `createdAt` INTEGER, `updatedAt` INTEGER, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '71499583ce106bdd57776459bb0f42b6')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5f8b3cebc7e900279e84f4096fc97bba')");
       }
 
       @Override
       public void dropAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("DROP TABLE IF EXISTS `users`");
         db.execSQL("DROP TABLE IF EXISTS `meals`");
+        db.execSQL("DROP TABLE IF EXISTS `food_items`");
         db.execSQL("DROP TABLE IF EXISTS `water_intake`");
         final List<? extends RoomDatabase.Callback> _callbacks = mCallbacks;
         if (_callbacks != null) {
@@ -145,6 +151,25 @@ public final class VitaTrackDatabase_Impl extends VitaTrackDatabase {
                   + " Expected:\n" + _infoMeals + "\n"
                   + " Found:\n" + _existingMeals);
         }
+        final HashMap<String, TableInfo.Column> _columnsFoodItems = new HashMap<String, TableInfo.Column>(9);
+        _columnsFoodItems.put("id", new TableInfo.Column("id", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsFoodItems.put("mealId", new TableInfo.Column("mealId", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsFoodItems.put("name", new TableInfo.Column("name", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsFoodItems.put("calories", new TableInfo.Column("calories", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsFoodItems.put("protein", new TableInfo.Column("protein", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsFoodItems.put("carbs", new TableInfo.Column("carbs", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsFoodItems.put("fat", new TableInfo.Column("fat", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsFoodItems.put("quantity", new TableInfo.Column("quantity", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsFoodItems.put("unit", new TableInfo.Column("unit", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysFoodItems = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesFoodItems = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoFoodItems = new TableInfo("food_items", _columnsFoodItems, _foreignKeysFoodItems, _indicesFoodItems);
+        final TableInfo _existingFoodItems = TableInfo.read(db, "food_items");
+        if (!_infoFoodItems.equals(_existingFoodItems)) {
+          return new RoomOpenHelper.ValidationResult(false, "food_items(com.vitatrack.app.data.model.FoodItem).\n"
+                  + " Expected:\n" + _infoFoodItems + "\n"
+                  + " Found:\n" + _existingFoodItems);
+        }
         final HashMap<String, TableInfo.Column> _columnsWaterIntake = new HashMap<String, TableInfo.Column>(7);
         _columnsWaterIntake.put("id", new TableInfo.Column("id", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsWaterIntake.put("userId", new TableInfo.Column("userId", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -164,7 +189,7 @@ public final class VitaTrackDatabase_Impl extends VitaTrackDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "71499583ce106bdd57776459bb0f42b6", "669102c343ef8d3f392a335df3cf1ebe");
+    }, "5f8b3cebc7e900279e84f4096fc97bba", "772813617d56230e3833af13ce158d5c");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
@@ -175,7 +200,7 @@ public final class VitaTrackDatabase_Impl extends VitaTrackDatabase {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     final HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "users","meals","water_intake");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "users","meals","food_items","water_intake");
   }
 
   @Override
@@ -186,6 +211,7 @@ public final class VitaTrackDatabase_Impl extends VitaTrackDatabase {
       super.beginTransaction();
       _db.execSQL("DELETE FROM `users`");
       _db.execSQL("DELETE FROM `meals`");
+      _db.execSQL("DELETE FROM `food_items`");
       _db.execSQL("DELETE FROM `water_intake`");
       super.setTransactionSuccessful();
     } finally {
@@ -203,6 +229,7 @@ public final class VitaTrackDatabase_Impl extends VitaTrackDatabase {
     final HashMap<Class<?>, List<Class<?>>> _typeConvertersMap = new HashMap<Class<?>, List<Class<?>>>();
     _typeConvertersMap.put(UserDao.class, UserDao_Impl.getRequiredConverters());
     _typeConvertersMap.put(MealDao.class, MealDao_Impl.getRequiredConverters());
+    _typeConvertersMap.put(FoodItemDao.class, FoodItemDao_Impl.getRequiredConverters());
     _typeConvertersMap.put(WaterIntakeDao.class, WaterIntakeDao_Impl.getRequiredConverters());
     return _typeConvertersMap;
   }
@@ -246,6 +273,20 @@ public final class VitaTrackDatabase_Impl extends VitaTrackDatabase {
           _mealDao = new MealDao_Impl(this);
         }
         return _mealDao;
+      }
+    }
+  }
+
+  @Override
+  public FoodItemDao foodItemDao() {
+    if (_foodItemDao != null) {
+      return _foodItemDao;
+    } else {
+      synchronized(this) {
+        if(_foodItemDao == null) {
+          _foodItemDao = new FoodItemDao_Impl(this);
+        }
+        return _foodItemDao;
       }
     }
   }

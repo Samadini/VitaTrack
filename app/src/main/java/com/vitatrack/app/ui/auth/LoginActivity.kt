@@ -1,6 +1,8 @@
 package com.vitatrack.app.ui.auth
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -21,6 +23,9 @@ class LoginActivity : AppCompatActivity() {
     
     companion object {
         private const val TAG = "LoginActivity"
+        private const val PREFS_NAME = "VitaTrackPrefs"
+        private const val KEY_IS_LOGGED_IN = "is_logged_in"
+        private const val KEY_USER_EMAIL = "user_email"
     }
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,26 +65,8 @@ class LoginActivity : AppCompatActivity() {
             Log.d(TAG, "Network availability changed: $isAvailable")
             updateUIForNetworkState(isAvailable)
         }
-        
-        // Check if user is already signed in
-        checkCurrentUser()
     }
     
-    private fun checkCurrentUser() {
-        lifecycleScope.launch {
-            try {
-                val currentUser = auth.currentUser
-                if (currentUser != null) {
-                    Log.d(TAG, "User already signed in: ${currentUser.email}")
-                    // Add a small delay to show the login screen briefly
-                    delay(1000)
-                    navigateToMain()
-                }
-            } catch (e: Exception) {
-                Log.e(TAG, "Error checking current user", e)
-            }
-        }
-    }
     
     private fun updateUIForNetworkState(isAvailable: Boolean) {
         if (!isAvailable) {
@@ -181,12 +168,11 @@ class LoginActivity : AppCompatActivity() {
                             Log.d(TAG, "Sign in successful for user: ${user?.email}")
                             
                             // Verify user is properly authenticated
-                            if (user != null && user.isEmailVerified) {
+                            if (user != null) {
+                                // Save login state to SharedPreferences
+                                saveLoginState(user.email ?: email)
                                 showSuccess("Welcome back!")
                                 navigateToMain()
-                            } else if (user != null && !user.isEmailVerified) {
-                                showError("Please verify your email address before signing in.")
-                                auth.signOut()
                             } else {
                                 showError("Authentication failed. Please try again.")
                             }
@@ -268,6 +254,19 @@ class LoginActivity : AppCompatActivity() {
                     showError("Failed to send reset email: $errorMessage")
                 }
             }
+    }
+    
+    private fun saveLoginState(email: String) {
+        try {
+            val sharedPrefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            val editor = sharedPrefs.edit()
+            editor.putBoolean(KEY_IS_LOGGED_IN, true)
+            editor.putString(KEY_USER_EMAIL, email)
+            editor.apply()
+            Log.d(TAG, "Login state saved for user: $email")
+        } catch (e: Exception) {
+            Log.e(TAG, "Error saving login state", e)
+        }
     }
     
     private fun navigateToMain() {

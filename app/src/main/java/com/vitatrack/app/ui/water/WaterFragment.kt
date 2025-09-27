@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.vitatrack.app.ui.base.BaseFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
@@ -16,7 +17,7 @@ import com.vitatrack.app.databinding.FragmentWaterBinding
 import com.vitatrack.app.ui.water.adapter.WaterLogAdapter
 import java.util.*
 
-class WaterFragment : Fragment() {
+class WaterFragment : BaseFragment() {
 
     private var _binding: FragmentWaterBinding? = null
     private val binding get() = _binding!!

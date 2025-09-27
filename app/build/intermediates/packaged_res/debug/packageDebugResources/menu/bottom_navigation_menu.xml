@@ -2,14 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     
     <item
-        android:id="@+id/dashboardFragment"
+        android:id="@+id/nav_dashboard"
         android:icon="@drawable/ic_home"
         android:title="Home" />
-    
-    <item
-        android:id="@+id/insightsFragment"
-        android:icon="@drawable/ic_insights"
-        android:title="Insights" />
     
     <item
         android:id="@+id/historyFragment"
@@ -17,10 +12,15 @@
         android:title="History" />
     
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/insightsFragment"
+        android:icon="@drawable/ic_insights"
+        android:title="Insights" />
+    
+    <item
+        android:id="@+id/nav_profile"
         android:icon="@drawable/ic_profile"
         android:title="Profile" />
-        
+    
     <item
         android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_settings"

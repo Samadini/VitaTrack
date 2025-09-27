@@ -1,314 +1,346 @@
 [
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_fragment_insights.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/fragment_insights.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_fragment_water_tracking.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\fragment_water_tracking.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_fragment_water_tracking.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/fragment_water_tracking.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_progress.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_progress.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\menu_bottom_navigation_menu.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\menu\\bottom_navigation_menu.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_item_water_intake.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/item_water_intake.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_water.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_water.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_dialog_add_meal.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/dialog_add_meal.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_button_outline_blue.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\button_outline_blue.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_item_exercise.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/item_exercise.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_item_recent_water_log.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\item_recent_water_log.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_water.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_water.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_edit_text_background.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\edit_text_background.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_item_water_log.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/item_water_log.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_settings.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_settings.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_walking.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_walking.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_activity_main.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/activity_main.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_swimming.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_swimming.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_activity_main_new.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/activity_main_new.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\anim_slide_out_right.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\anim\\slide_out_right.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/anim_slide_in_right.xml.flat",
-        "source": "com.vitatrack.app-main-68:/anim/slide_in_right.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_activity_simple_main.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\activity_simple_main.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_swimming.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_swimming.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_home.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_home.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_button_outline_blue.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/button_outline_blue.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_circular_progress.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\circular_progress.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_item_recent_water_log.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/item_recent_water_log.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_add.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_add.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_nav_header.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/nav_header.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_bg_rounded_light.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\bg_rounded_light.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_vita_logo.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_vita_logo.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_dialog_add_edit_exercise.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\dialog_add_edit_exercise.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/xml_data_extraction_rules.xml.flat",
-        "source": "com.vitatrack.app-main-68:/xml/data_extraction_rules.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_item_meal.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\item_meal.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_activity_auth.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/activity_auth.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\activity_login.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_circular_progress_blue.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/circular_progress_blue.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/anim_slide_out_left.xml.flat",
-        "source": "com.vitatrack.app-main-68:/anim/slide_out_left.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_exercise.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_exercise.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/navigation_nav_graph.xml.flat",
-        "source": "com.vitatrack.app-main-68:/navigation/nav_graph.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_gym.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_gym.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_profile.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_profile.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_edit.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_edit.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_fragment_profile.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/fragment_profile.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_item_water_intake.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\item_water_intake.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_exercise.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_exercise.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_gradient_background.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\gradient_background.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_fragment_history.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/fragment_history.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_dialog_create_meal.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\dialog_create_meal.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_cycling.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_cycling.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_activity_main_new.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\activity_main_new.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_delete.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_delete.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\xml\\data_extraction_rules.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.vitatrack.app-main-68:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_activity_auth.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\activity_auth.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_gradient_background.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/gradient_background.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_activity.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_activity.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_insights.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_insights.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\anim_slide_out_left.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\anim\\slide_out_left.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_dot_separator.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/dot_separator.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\anim_slide_in_left.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\anim\\slide_in_left.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_circle_background_light_blue.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/circle_background_light_blue.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_fragment_meal.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\fragment_meal.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_activity_simple_main.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/activity_simple_main.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_dialog_add_food_item.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\dialog_add_food_item.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_activity_splash.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/activity_splash.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_input_background.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\input_background.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_history.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_history.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\navigation_nav_graph.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\navigation\\nav_graph.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/anim_slide_out_right.xml.flat",
-        "source": "com.vitatrack.app-main-68:/anim/slide_out_right.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_fragment_settings.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\fragment_settings.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_fragment_exercise.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/fragment_exercise.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_circle_background_light_blue.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\circle_background_light_blue.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.vitatrack.app-main-68:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_logout.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_logout.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_edit.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_edit.xml"
+        "merged": "com.vitatrack.app-debug-66:/layout_dialog_create_meal.xml.flat",
+        "source": "com.vitatrack.app-main-68:/layout/dialog_create_meal.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/menu_bottom_navigation_menu.xml.flat",
-        "source": "com.vitatrack.app-main-68:/menu/bottom_navigation_menu.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\menu_main_menu.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\menu\\main_menu.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_running.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_running.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_walking.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_walking.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_button_primary.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/button_primary.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_item_water_log.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\item_water_log.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_progress.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_progress.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_water_drop.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_water_drop.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_fragment_history.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\fragment_history.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_input_background.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/input_background.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_button_primary.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\button_primary.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_yoga.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_yoga.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_insights.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_insights.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/xml_backup_rules.xml.flat",
-        "source": "com.vitatrack.app-main-68:/xml/backup_rules.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_circular_progress_blue.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\circular_progress_blue.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_activity_login.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/activity_login.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_history.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_history.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_fragment_dashboard.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/fragment_dashboard.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_fragment_log_water.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/fragment_log_water.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\xml\\backup_rules.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_logout.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_logout.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_dashboard.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_dashboard.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_button_outline.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/button_outline.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_profile.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_profile.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/menu_drawer_menu.xml.flat",
-        "source": "com.vitatrack.app-main-68:/menu/drawer_menu.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_meal.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_meal.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_gym.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_gym.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\anim_slide_in_right.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\anim\\slide_in_right.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_menu.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_menu.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_gradient_blue_header.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\gradient_blue_header.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_fragment_water.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/fragment_water.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_fragment_log_water.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\fragment_log_water.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/xml_network_security_config.xml.flat",
-        "source": "com.vitatrack.app-main-68:/xml/network_security_config.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_fragment_dashboard.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\fragment_dashboard.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_fragment_settings.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/fragment_settings.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_fragment_exercise.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\fragment_exercise.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_streak_badge.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/streak_badge.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_item_food.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\item_food.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_notifications.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_notifications.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_yoga.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_yoga.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_circular_progress.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/circular_progress.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_delete.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_delete.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_button_outline_green.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/button_outline_green.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_fragment_profile.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\fragment_profile.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_fragment_dashboard_new.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/fragment_dashboard_new.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_notifications.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_notifications.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/anim_slide_in_left.xml.flat",
-        "source": "com.vitatrack.app-main-68:/anim/slide_in_left.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_arrow_back.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_arrow_back.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_button_primary_blue.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/button_primary_blue.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_button_outline_green.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\button_outline_green.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_edit_text_background.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/edit_text_background.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_dot_separator.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\dot_separator.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_dialog_add_edit_exercise.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/dialog_add_edit_exercise.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_fragment_dashboard_new.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\fragment_dashboard_new.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_dashboard.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_dashboard.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\xml_network_security_config.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\xml\\network_security_config.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_item_recent_activity.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/item_recent_activity.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_water_drop.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_water_drop.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_add.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_add.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_streak_badge.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\streak_badge.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_settings.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_settings.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_vita_logo.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_vita_logo.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_fragment_meal.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/fragment_meal.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_running.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_running.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_arrow_back.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_arrow_back.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_button_outline.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\button_outline.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_home.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_home.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\menu_drawer_menu.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\menu\\drawer_menu.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_activity.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_activity.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_button_primary_blue.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\button_primary_blue.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/layout_activity_simple_auth.xml.flat",
-        "source": "com.vitatrack.app-main-68:/layout/activity_simple_auth.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_activity_splash.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\activity_splash.xml"
     },
     {
-        "merged": "com.vitatrack.app-debug-66:/drawable_ic_meal.xml.flat",
-        "source": "com.vitatrack.app-main-68:/drawable/ic_meal.xml"
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_activity_simple_auth.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\activity_simple_auth.xml"
+    },
+    {
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_nav_header.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\nav_header.xml"
+    },
+    {
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_fragment_insights.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\fragment_insights.xml"
+    },
+    {
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_fragment_water.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\fragment_water.xml"
+    },
+    {
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_item_recent_activity.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\item_recent_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_item_exercise.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\item_exercise.xml"
+    },
+    {
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\layout_dialog_add_meal.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\dialog_add_meal.xml"
+    },
+    {
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_cycling.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_cycling.xml"
+    },
+    {
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-debug-66:\\drawable_ic_menu.xml.flat",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\drawable\\ic_menu.xml"
     }
 ]
