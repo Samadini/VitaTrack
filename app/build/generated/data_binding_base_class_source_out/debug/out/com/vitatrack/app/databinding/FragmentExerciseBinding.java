@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +33,9 @@ public final class FragmentExerciseBinding implements ViewBinding {
   public final FloatingActionButton fabAddExercise;
 
   @NonNull
+  public final ProgressBar progressBar;
+
+  @NonNull
   public final RecyclerView rvExercises;
 
   @NonNull
@@ -39,12 +43,13 @@ public final class FragmentExerciseBinding implements ViewBinding {
 
   private FragmentExerciseBinding(@NonNull LinearLayout rootView,
       @NonNull Button btnAddFirstExercise, @NonNull LinearLayout emptyState,
-      @NonNull FloatingActionButton fabAddExercise, @NonNull RecyclerView rvExercises,
-      @NonNull TextView tvTodayExercise) {
+      @NonNull FloatingActionButton fabAddExercise, @NonNull ProgressBar progressBar,
+      @NonNull RecyclerView rvExercises, @NonNull TextView tvTodayExercise) {
     this.rootView = rootView;
     this.btnAddFirstExercise = btnAddFirstExercise;
     this.emptyState = emptyState;
     this.fabAddExercise = fabAddExercise;
+    this.progressBar = progressBar;
     this.rvExercises = rvExercises;
     this.tvTodayExercise = tvTodayExercise;
   }
@@ -94,6 +99,12 @@ public final class FragmentExerciseBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.progressBar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
+        break missingId;
+      }
+
       id = R.id.rvExercises;
       RecyclerView rvExercises = ViewBindings.findChildViewById(rootView, id);
       if (rvExercises == null) {
@@ -107,7 +118,7 @@ public final class FragmentExerciseBinding implements ViewBinding {
       }
 
       return new FragmentExerciseBinding((LinearLayout) rootView, btnAddFirstExercise, emptyState,
-          fabAddExercise, rvExercises, tvTodayExercise);
+          fabAddExercise, progressBar, rvExercises, tvTodayExercise);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

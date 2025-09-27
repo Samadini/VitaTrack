@@ -3173,6 +3173,7 @@ drawable ic_activity
 drawable ic_add
 drawable ic_arrow_back
 drawable ic_arrow_back_black_24
+drawable ic_calendar
 drawable ic_call_answer
 drawable ic_call_answer_low
 drawable ic_call_answer_video
@@ -3186,6 +3187,7 @@ drawable ic_dashboard
 drawable ic_delete
 drawable ic_edit
 drawable ic_exercise
+drawable ic_fire
 drawable ic_gym
 drawable ic_history
 drawable ic_home
@@ -3202,13 +3204,16 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_note
 drawable ic_notifications
 drawable ic_profile
 drawable ic_progress
 drawable ic_running
+drawable ic_save
 drawable ic_search_black_24
 drawable ic_settings
 drawable ic_swimming
+drawable ic_time
 drawable ic_vita_logo
 drawable ic_walking
 drawable ic_water
@@ -3356,6 +3361,7 @@ id action_dashboard_to_exercise
 id action_dashboard_to_logwater
 id action_dashboard_to_meal
 id action_divider
+id action_exercise_to_log_exercise
 id action_image
 id action_logout
 id action_menu_divider
@@ -3428,12 +3434,17 @@ id btnEdit
 id btnEditExercise
 id btnGoogle
 id btnGoogleSignIn
+id btnIntensityHigh
+id btnIntensityLow
+id btnIntensityMedium
 id btnLogWater
 id btnLogout
 id btnMinus
 id btnPlus
 id btnSave
+id btnSaveExercise
 id btnSaveWaterIntake
+id btnSelectDate
 id btnSetGoal
 id btnSignIn
 id buttonPanel
@@ -3622,6 +3633,7 @@ id listMode
 id list_item
 id loadingOverlay
 id locale
+id logExerciseFragment
 id logWaterFragment
 id loginCard
 id logoContainer
@@ -3825,6 +3837,7 @@ id snapMargins
 id south
 id spacer
 id special_effects_controller_view_tag
+id spinnerExerciseType
 id spinnerMealType
 id splashscreen_icon_view
 id spline
@@ -3892,6 +3905,7 @@ id title
 id titleDividerNoCustom
 id title_template
 id toggle
+id toggleGroupIntensity
 id toolbar
 id top
 id topPanel
@@ -3931,11 +3945,14 @@ id tvFoodName
 id tvForgotPassword
 id tvFormTitle
 id tvGoal
+id tvIntensity
 id tvMealName
 id tvMealType
 id tvNotes
+id tvNotesLabel
 id tvNutrients
 id tvNutrition
+id tvNutritionTitle
 id tvProfileTitle
 id tvProgress
 id tvProgressText
@@ -4132,6 +4149,7 @@ layout fragment_dashboard_new
 layout fragment_exercise
 layout fragment_history
 layout fragment_insights
+layout fragment_log_exercise
 layout fragment_log_water
 layout fragment_meal
 layout fragment_profile
@@ -4140,6 +4158,8 @@ layout fragment_water
 layout fragment_water_tracking
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
+layout item_dropdown_exercise_type
+layout item_dropdown_generic
 layout item_exercise
 layout item_food
 layout item_meal

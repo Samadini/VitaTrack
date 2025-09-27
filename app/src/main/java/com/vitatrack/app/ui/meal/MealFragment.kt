@@ -1,6 +1,7 @@
 package com.vitatrack.app.ui.meal
 
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +27,8 @@ import com.vitatrack.app.data.nutrition.NutritionDatabase
 import com.vitatrack.app.ui.base.BaseFragment
 import android.text.Editable
 import android.text.TextWatcher
-import java.util.UUID
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MealFragment : BaseFragment() {
 
@@ -40,6 +42,8 @@ class MealFragment : BaseFragment() {
     
     private var currentMealId: String? = null
     private var isCreatingMeal = false
+    private var selectedDate: Date = Date() // Default to today
+    private val dateFormatter = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,6 +73,7 @@ class MealFragment : BaseFragment() {
         setupRecyclerViews()
         setupClickListeners()
         observeViewModel()
+        updateNutritionTitle()
         loadMealData()
     }
 
@@ -97,9 +102,13 @@ class MealFragment : BaseFragment() {
         binding.fabAddMeal.setOnClickListener {
             showCreateMealDialog()
         }
-        
+
         binding.btnAddFirstMeal.setOnClickListener {
             showCreateMealDialog()
+        }
+
+        binding.btnSelectDate.setOnClickListener {
+            showDatePickerDialog()
         }
     }
 
@@ -108,7 +117,7 @@ class MealFragment : BaseFragment() {
         
         // Setup meal type dropdown
         val mealTypes = MealType.values().map { getMealTypeDisplayName(it) }
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, mealTypes)
+        val adapter = ArrayAdapter(requireContext(), R.layout.item_dropdown_generic, mealTypes)
         dialogBinding.spinnerMealType.setAdapter(adapter)
         dialogBinding.spinnerMealType.setText(mealTypes[0], false)
         
@@ -150,7 +159,7 @@ class MealFragment : BaseFragment() {
         
         // Setup food name autocomplete
         val foodNames = NutritionDatabase.getAllFoodNames()
-        val foodAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, foodNames)
+        val foodAdapter = ArrayAdapter(requireContext(), R.layout.item_dropdown_generic, foodNames)
         dialogBinding.etFoodName.setAdapter(foodAdapter)
         
         // Add text watcher for automatic nutrition calculation
@@ -289,7 +298,7 @@ class MealFragment : BaseFragment() {
         
         // Setup meal type dropdown
         val mealTypes = MealType.values().map { getMealTypeDisplayName(it) }
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, mealTypes)
+        val adapter = ArrayAdapter(requireContext(), R.layout.item_dropdown_generic, mealTypes)
         dialogBinding.spinnerMealType.setAdapter(adapter)
         dialogBinding.spinnerMealType.setText(getMealTypeDisplayName(meal.type), false)
 
@@ -388,8 +397,48 @@ class MealFragment : BaseFragment() {
     private fun loadMealData() {
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            mealCrudViewModel.loadTodayMeals(currentUser.uid)
+            mealCrudViewModel.loadMealsByDate(currentUser.uid, selectedDate)
         }
+    }
+
+    private fun showDatePickerDialog() {
+        val calendar = Calendar.getInstance()
+        calendar.time = selectedDate
+        
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, year, month, dayOfMonth ->
+                val newCalendar = Calendar.getInstance()
+                newCalendar.set(year, month, dayOfMonth)
+                selectedDate = newCalendar.time
+                updateNutritionTitle()
+                loadMealData()
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+        
+        datePickerDialog.show()
+    }
+
+    private fun updateNutritionTitle() {
+        val today = Calendar.getInstance()
+        val selectedCalendar = Calendar.getInstance()
+        selectedCalendar.time = selectedDate
+        
+        val title = if (isSameDay(today, selectedCalendar)) {
+            "Today's Nutrition"
+        } else {
+            "${dateFormatter.format(selectedDate)} Nutrition"
+        }
+        
+        binding.tvNutritionTitle.text = title
+    }
+
+    private fun isSameDay(cal1: Calendar, cal2: Calendar): Boolean {
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR)
     }
 
     override fun onDestroyView() {

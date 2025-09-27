@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.vitatrack.app.R
+import com.vitatrack.app.ui.base.BaseFragment
 
-class HistoryFragment : Fragment() {
+class HistoryFragment : BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -11,8 +11,9 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.vitatrack.app.R
 import com.vitatrack.app.ui.auth.LoginActivity
+import com.vitatrack.app.ui.base.BaseFragment
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

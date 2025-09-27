@@ -1,9 +1,5 @@
 [
     {
-        "merged": "com.vitatrack.app-mergeDebugResources-65:/layout/dialog_create_meal.xml",
-        "source": "com.vitatrack.app-main-68:/layout/dialog_create_meal.xml"
-    },
-    {
         "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-mergeDebugResources-65:\\layout\\activity_simple_auth.xml",
         "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\activity_simple_auth.xml"
     },
@@ -14,6 +10,10 @@
     {
         "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-mergeDebugResources-65:\\layout\\fragment_dashboard_new.xml",
         "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\fragment_dashboard_new.xml"
+    },
+    {
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-mergeDebugResources-65:\\layout\\item_dropdown_generic.xml",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\item_dropdown_generic.xml"
     },
     {
         "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-mergeDebugResources-65:\\layout\\fragment_meal.xml",
@@ -34,6 +34,10 @@
     {
         "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-mergeDebugResources-65:\\layout\\fragment_dashboard.xml",
         "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\fragment_dashboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-mergeDebugResources-65:\\layout\\fragment_log_exercise.xml",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\fragment_log_exercise.xml"
     },
     {
         "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-mergeDebugResources-65:\\layout\\item_meal.xml",
@@ -62,6 +66,10 @@
     {
         "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-mergeDebugResources-65:\\layout\\fragment_profile.xml",
         "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\fragment_profile.xml"
+    },
+    {
+        "merged": "com.vitatrack.app-mergeDebugResources-65:/layout/fragment_meal.xml",
+        "source": "com.vitatrack.app-main-68:/layout/fragment_meal.xml"
     },
     {
         "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-mergeDebugResources-65:\\layout\\activity_auth.xml",
@@ -102,6 +110,10 @@
     {
         "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-mergeDebugResources-65:\\layout\\fragment_insights.xml",
         "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\fragment_insights.xml"
+    },
+    {
+        "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-mergeDebugResources-65:\\layout\\item_dropdown_exercise_type.xml",
+        "source": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-main-68:\\layout\\item_dropdown_exercise_type.xml"
     },
     {
         "merged": "C:\\Users\\Samadini Pasanya\\.gradle\\daemon\\8.7\\com.vitatrack.app-mergeDebugResources-65:\\layout\\dialog_add_edit_exercise.xml",

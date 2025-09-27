@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -27,6 +28,9 @@ public final class FragmentMealBinding implements ViewBinding {
   public final Button btnAddFirstMeal;
 
   @NonNull
+  public final ImageButton btnSelectDate;
+
+  @NonNull
   public final LinearLayout emptyStateMeal;
 
   @NonNull
@@ -45,23 +49,30 @@ public final class FragmentMealBinding implements ViewBinding {
   public final TextView tvFat;
 
   @NonNull
+  public final TextView tvNutritionTitle;
+
+  @NonNull
   public final TextView tvProtein;
 
   @NonNull
   public final TextView tvTodayCalories;
 
   private FragmentMealBinding(@NonNull LinearLayout rootView, @NonNull Button btnAddFirstMeal,
-      @NonNull LinearLayout emptyStateMeal, @NonNull FloatingActionButton fabAddMeal,
-      @NonNull RecyclerView rvMeals, @NonNull TabLayout tabLayout, @NonNull TextView tvCarbs,
-      @NonNull TextView tvFat, @NonNull TextView tvProtein, @NonNull TextView tvTodayCalories) {
+      @NonNull ImageButton btnSelectDate, @NonNull LinearLayout emptyStateMeal,
+      @NonNull FloatingActionButton fabAddMeal, @NonNull RecyclerView rvMeals,
+      @NonNull TabLayout tabLayout, @NonNull TextView tvCarbs, @NonNull TextView tvFat,
+      @NonNull TextView tvNutritionTitle, @NonNull TextView tvProtein,
+      @NonNull TextView tvTodayCalories) {
     this.rootView = rootView;
     this.btnAddFirstMeal = btnAddFirstMeal;
+    this.btnSelectDate = btnSelectDate;
     this.emptyStateMeal = emptyStateMeal;
     this.fabAddMeal = fabAddMeal;
     this.rvMeals = rvMeals;
     this.tabLayout = tabLayout;
     this.tvCarbs = tvCarbs;
     this.tvFat = tvFat;
+    this.tvNutritionTitle = tvNutritionTitle;
     this.tvProtein = tvProtein;
     this.tvTodayCalories = tvTodayCalories;
   }
@@ -96,6 +107,12 @@ public final class FragmentMealBinding implements ViewBinding {
       id = R.id.btnAddFirstMeal;
       Button btnAddFirstMeal = ViewBindings.findChildViewById(rootView, id);
       if (btnAddFirstMeal == null) {
+        break missingId;
+      }
+
+      id = R.id.btnSelectDate;
+      ImageButton btnSelectDate = ViewBindings.findChildViewById(rootView, id);
+      if (btnSelectDate == null) {
         break missingId;
       }
 
@@ -135,6 +152,12 @@ public final class FragmentMealBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvNutritionTitle;
+      TextView tvNutritionTitle = ViewBindings.findChildViewById(rootView, id);
+      if (tvNutritionTitle == null) {
+        break missingId;
+      }
+
       id = R.id.tvProtein;
       TextView tvProtein = ViewBindings.findChildViewById(rootView, id);
       if (tvProtein == null) {
@@ -147,8 +170,9 @@ public final class FragmentMealBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentMealBinding((LinearLayout) rootView, btnAddFirstMeal, emptyStateMeal,
-          fabAddMeal, rvMeals, tabLayout, tvCarbs, tvFat, tvProtein, tvTodayCalories);
+      return new FragmentMealBinding((LinearLayout) rootView, btnAddFirstMeal, btnSelectDate,
+          emptyStateMeal, fabAddMeal, rvMeals, tabLayout, tvCarbs, tvFat, tvNutritionTitle,
+          tvProtein, tvTodayCalories);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

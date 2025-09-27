@@ -34,6 +34,9 @@ public final class ItemExerciseBinding implements ViewBinding {
   public final TextView tvCalories;
 
   @NonNull
+  public final TextView tvDate;
+
+  @NonNull
   public final TextView tvDuration;
 
   @NonNull
@@ -42,18 +45,37 @@ public final class ItemExerciseBinding implements ViewBinding {
   @NonNull
   public final TextView tvExerciseType;
 
+  @NonNull
+  public final TextView tvIntensity;
+
+  @NonNull
+  public final TextView tvNotes;
+
+  @NonNull
+  public final TextView tvNotesLabel;
+
+  @NonNull
+  public final TextView tvTime;
+
   private ItemExerciseBinding(@NonNull CardView rootView, @NonNull ImageButton btnDeleteExercise,
       @NonNull ImageButton btnEditExercise, @NonNull ImageView ivExerciseIcon,
-      @NonNull TextView tvCalories, @NonNull TextView tvDuration, @NonNull TextView tvExerciseName,
-      @NonNull TextView tvExerciseType) {
+      @NonNull TextView tvCalories, @NonNull TextView tvDate, @NonNull TextView tvDuration,
+      @NonNull TextView tvExerciseName, @NonNull TextView tvExerciseType,
+      @NonNull TextView tvIntensity, @NonNull TextView tvNotes, @NonNull TextView tvNotesLabel,
+      @NonNull TextView tvTime) {
     this.rootView = rootView;
     this.btnDeleteExercise = btnDeleteExercise;
     this.btnEditExercise = btnEditExercise;
     this.ivExerciseIcon = ivExerciseIcon;
     this.tvCalories = tvCalories;
+    this.tvDate = tvDate;
     this.tvDuration = tvDuration;
     this.tvExerciseName = tvExerciseName;
     this.tvExerciseType = tvExerciseType;
+    this.tvIntensity = tvIntensity;
+    this.tvNotes = tvNotes;
+    this.tvNotesLabel = tvNotesLabel;
+    this.tvTime = tvTime;
   }
 
   @Override
@@ -107,6 +129,12 @@ public final class ItemExerciseBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvDate;
+      TextView tvDate = ViewBindings.findChildViewById(rootView, id);
+      if (tvDate == null) {
+        break missingId;
+      }
+
       id = R.id.tvDuration;
       TextView tvDuration = ViewBindings.findChildViewById(rootView, id);
       if (tvDuration == null) {
@@ -125,8 +153,33 @@ public final class ItemExerciseBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvIntensity;
+      TextView tvIntensity = ViewBindings.findChildViewById(rootView, id);
+      if (tvIntensity == null) {
+        break missingId;
+      }
+
+      id = R.id.tvNotes;
+      TextView tvNotes = ViewBindings.findChildViewById(rootView, id);
+      if (tvNotes == null) {
+        break missingId;
+      }
+
+      id = R.id.tvNotesLabel;
+      TextView tvNotesLabel = ViewBindings.findChildViewById(rootView, id);
+      if (tvNotesLabel == null) {
+        break missingId;
+      }
+
+      id = R.id.tvTime;
+      TextView tvTime = ViewBindings.findChildViewById(rootView, id);
+      if (tvTime == null) {
+        break missingId;
+      }
+
       return new ItemExerciseBinding((CardView) rootView, btnDeleteExercise, btnEditExercise,
-          ivExerciseIcon, tvCalories, tvDuration, tvExerciseName, tvExerciseType);
+          ivExerciseIcon, tvCalories, tvDate, tvDuration, tvExerciseName, tvExerciseType,
+          tvIntensity, tvNotes, tvNotesLabel, tvTime);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
